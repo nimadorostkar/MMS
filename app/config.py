@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 class AppConfig(AppConfig):
     name = 'app'
-    verbose_name= " مدیریت اطلاعات و آمار تولید "
+    verbose_name= "سیستم مدیریت قالب ها"
