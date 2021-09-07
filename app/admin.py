@@ -1,7 +1,7 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage
+from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage, Repair_operation
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from jalali_date import datetime2jalali, date2jalali
@@ -104,6 +104,17 @@ admin.site.register(Category, DraggableMPTTAdmin,
 
 
 
+#------------------------------------------------------------------------------
+class Repair_operationAdmin(ImportExportModelAdmin):
+    list_display = ('Step','short_description', 'Time')
+    list_filter = ("Mold", "Applicant")
+
+    def get_created_jalali(self, obj):
+        return datetime2jalali(obj.Time).strftime('%y/%m/%d _ %H:%M:%S')
+    get_created_jalali.short_description = "تاریخ"
+    
+admin.site.register(models.Repair_operation, Repair_operationAdmin)
+
 
 
 
@@ -116,8 +127,12 @@ class Repair_requestAdmin(ImportExportModelAdmin):
     list_display = ('Mold','Applicant')
     list_filter = ("Mold", "Applicant")
     search_fields = ['Mold', 'Applicant']
-    raw_id_fields = ('Mold',)
+    raw_id_fields = ('Mold','Operation',)
     inlines = [ RepairImageInline, ]
+
+    def get_created_jalali(self, obj):
+        return datetime2jalali(obj.Time).strftime('%y/%m/%d _ %H:%M:%S')
+    get_created_jalali.short_description = "تاریخ"
 
 
 admin.site.register(models.Repair_request, Repair_requestAdmin)
