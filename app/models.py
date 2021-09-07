@@ -158,9 +158,6 @@ class Mold(models.Model):
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات")
 
 
-    def image_tag(self):
-        return format_html("<img width=50 src='{}'>".format(self.Image.url))
-
     def __str__(self):
       return str(self.Name)
 
@@ -193,7 +190,7 @@ class Repair_request(models.Model):
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "مشکل وارد شده")
 
     def __str__(self):
-      return str(self.Name)
+      return str(self.Mold)
 
     class Meta:
         verbose_name = "درخواست تعمیر"

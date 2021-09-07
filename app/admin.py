@@ -33,7 +33,7 @@ class MoldImageInline(admin.TabularInline):
     extra = 1
 
 class MoldAdmin(ImportExportModelAdmin):
-    list_display = ('Name','Code','Type','Cavities_qty','image_tag','Year')
+    list_display = ('Name','Code','Type','Cavities_qty','Year')
     list_filter = ("Type", "Cavities_qty")
     search_fields = ['Name', 'Code']
     raw_id_fields = ('Category',)
