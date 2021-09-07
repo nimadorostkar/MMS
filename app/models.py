@@ -91,6 +91,33 @@ class Manufacturer(models.Model):
 
 
 
+#------------------------------------------------------------------------------
+# MPTT Model -->  https://django-mptt.readthedocs.io/en/latest/index.html
+class Category(MPTTModel):
+    #name = models.ForeignKey(Mold, on_delete=models.CASCADE, related_name = "mat_name", verbose_name = "نام قالب")
+    name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children',verbose_name = "والد")
+
+
+    class MPTTMeta:
+        level_attr = 'mptt_level'
+        order_insertion_by = ['name']
+
+    class Meta:
+        verbose_name = "دسته بندی"
+        verbose_name_plural = "دسته بندی ها"
+
+    def __unicode__(self):
+        return u"%s" % (self.name)
+
+    def __str__(self):
+        return str(self.name)
+
+
+
+
+
+
 
 #------------------------------------------------------------------------------
 class Mold(models.Model):
@@ -106,7 +133,8 @@ class Mold(models.Model):
     Year = models.CharField(max_length=40, null=True, blank=True, verbose_name = "سال ساخت")                                     # Date just year
     Mold_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد قالب")
     Related_product = models.ManyToManyField(Product, related_name='Product', verbose_name = "محصولات مرتبط")
-    Category = models.CharField(max_length=40, null=True, blank=True, verbose_name = "دسته بندی")                                #ForeignKey or MPTT
+    #Category = models.CharField(max_length=40, null=True, blank=True, verbose_name = "دسته بندی")                                #ForeignKey or MPTT
+    Category = models.ForeignKey(Category ,on_delete=models.CASCADE ,null=True, blank=True, verbose_name = "دسته بندی")
     Material = models.CharField(max_length=40, null=True, blank=True, verbose_name = "متریال طراحی")                             #CHOICES
     Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")     #multi image
     File = models.FileField(default='media/Default.png', null=True, blank=True, verbose_name ="فایل")
@@ -125,29 +153,6 @@ class Mold(models.Model):
         verbose_name_plural = "قالب ها"
 
 
-
-
-
-#------------------------------------------------------------------------------
-# MPTT Model -->  https://django-mptt.readthedocs.io/en/latest/index.html
-class Category(MPTTModel):
-    name = models.ForeignKey(Mold, on_delete=models.CASCADE, related_name = "mat_name", verbose_name = "نام قالب")
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children',verbose_name = "والد")
-
-
-    class MPTTMeta:
-        level_attr = 'mptt_level'
-        order_insertion_by = ['name']
-
-    class Meta:
-        verbose_name = "دسته بندی"
-        verbose_name_plural = "دسته بندی ها"
-
-    def __unicode__(self):
-        return u"%s" % (self.name)
-
-    def __str__(self):
-        return str(self.name)
 
 
 
