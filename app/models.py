@@ -5,7 +5,6 @@ from django.urls import reverse
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.template.defaultfilters import truncatechars
-from extensions.utils import jalali_converter
 from mptt.models import MPTTModel, TreeForeignKey
 from django.core.validators import MaxValueValidator, MinValueValidator
 
@@ -213,14 +212,6 @@ class Repair_request(models.Model):
         verbose_name = "درخواست تعمیر"
         verbose_name_plural = "درخواست تعمیرات"
 
-    def j_StartTime(self):
-        return jalali_converter(self.StartTime)
-
-    def j_CheckTime(self):
-        return jalali_converter(self.CheckTime)
-
-    def j_EndTime(self):
-        return jalali_converter(self.EndTime)
 
 class RepairImage(models.Model):
     property = models.ForeignKey(Repair_request, on_delete=models.CASCADE, related_name='images')
@@ -290,15 +281,6 @@ class Manufacture_request(models.Model):
         verbose_name = "درخواست ساخت قاب"
         verbose_name_plural = "درخواست های ساخت قالب"
 
-    def j_StartTime(self):
-        return jalali_converter(self.StartTime)
-
-    def j_CheckTime(self):
-        return jalali_converter(self.CheckTime)
-
-    def j_EndTime(self):
-        return jalali_converter(self.EndTime)
-
 
 
 
@@ -316,6 +298,10 @@ class Component_request(models.Model):
     @property
     def short_description(self):
         return truncatechars(self.Description, 60)
+
+    def __str__(self):
+      return str(self.Description)
+
 
     class Meta:
         verbose_name = "درخواست ساخت"

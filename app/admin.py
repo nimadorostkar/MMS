@@ -10,6 +10,9 @@ from mptt.admin import MPTTModelAdmin, TreeRelatedFieldListFilter, DraggableMPTT
 
 
 
+
+
+
 admin.site.site_header= " توانکار "
 admin.site.site_title= "Tavankar"
 admin.site.register(LogEntry)
@@ -144,18 +147,6 @@ class Repair_requestAdmin(ImportExportModelAdmin):
     raw_id_fields = ('Mold',)
     inlines = [ RepairImageInline, ]
 
-    def get_created_jalali(self, obj):
-        return datetime2jalali(obj.StartTime).strftime('%y/%m/%d _ %H:%M:%S')
-    get_created_jalali.short_description = "تاریخ درخواست"
-
-    def get_created_jalali(self, obj):
-        return datetime2jalali(obj.CheckTime).strftime('%y/%m/%d _ %H:%M:%S')
-    get_created_jalali.short_description = "تاریخ بررسی"
-
-    def get_created_jalali(self, obj):
-        return datetime2jalali(obj.EndTime).strftime('%y/%m/%d _ %H:%M:%S')
-    get_created_jalali.short_description = "تاریخ اتمام"
-
 admin.site.register(models.Repair_request, Repair_requestAdmin)
 
 
@@ -180,17 +171,6 @@ class Component_requestAdmin(ImportExportModelAdmin):
     list_display = ('short_description','Applicant','Status')
     inlines = [ ComponentImageImageInline, ]
 
-    def get_created_jalali(self, obj):
-        return datetime2jalali(obj.StartTime).strftime('%y/%m/%d _ %H:%M:%S')
-    get_created_jalali.short_description = "تاریخ درخواست"
-
-    def get_created_jalali(self, obj):
-        return datetime2jalali(obj.CheckTime).strftime('%y/%m/%d _ %H:%M:%S')
-    get_created_jalali.short_description = "تاریخ بررسی"
-
-    def get_created_jalali(self, obj):
-        return datetime2jalali(obj.EndTime).strftime('%y/%m/%d _ %H:%M:%S')
-    get_created_jalali.short_description = "تاریخ اتمام"
 
 admin.site.register(models.Component_request, Component_requestAdmin)
 

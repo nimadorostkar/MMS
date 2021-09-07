@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'import_export',  # https://django-import-export.readthedocs.io/en/latest/index.html
     'extra_settings', # https://github.com/fabiocaccamo/django-extra-settings
     'bootstrapform',  # https://django-bootstrap-form.readthedocs.io/en/latest/
-    'jalali_date',    # https://pypi.org/project/django-jalali-date/
-    'extensions',
+    #'jalali_date',     https://pypi.org/project/django-jalali-date/
+    #'extensions',
     'mptt',
     'allauth',        # Third Party - 1) All Auth
     'allauth.account',
@@ -87,32 +87,6 @@ MIDDLEWARE = [
 
 
 
-
-
-# jalali date
-JALALI_DATE_DEFAULTS = {
-   'Strftime': {
-        'date': '%y/%m/%d',
-        'datetime': '%H:%M:%S _ %y/%m/%d',
-    },
-    'Static': {
-        'js': [
-            # loading datepicker
-            'admin/js/django_jalali.min.js',
-            # OR
-            # 'admin/jquery.ui.datepicker.jalali/scripts/jquery.ui.core.js',
-            # 'admin/jquery.ui.datepicker.jalali/scripts/calendar.js',
-            # 'admin/jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc.js',
-            # 'admin/jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc-fa.js',
-            # 'admin/js/main.js',
-        ],
-        'css': {
-            'all': [
-                'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css',
-            ]
-        }
-    },
-}
 
 
 
