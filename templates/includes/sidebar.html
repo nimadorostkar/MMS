@@ -15,37 +15,37 @@
         <ul class="nav">
         {% if user.is_authenticated %}
 
-          <li class="{% if 'app:products' in segment %} active {% endif %}">
-            <a href="{% url 'app:products' %}">
+          <li class="{% if 'app:index' in segment %} active {% endif %}">
+            <a href="{% url 'app:index' %}">
               <i class="tim-icons icon-app"></i>
               <p> محصول </p>
             </a>
           </li>
 
-          <li class="{% if 'app:orders' in segment %} active {% endif %}">
-            <a href="{% url 'app:orders' %}">
+          <li class="{% if 'app:index' in segment %} active {% endif %}">
+            <a href="{% url 'app:index' %}">
               <i class="tim-icons icon-notes"></i>
               <p> سفارشات </p>
             </a>
           </li>
 
-          <li class="{% if 'app:materials' in segment %} active {% endif %}">
-            <a href="{% url 'app:materials' %}">
+          <li class="{% if 'app:index' in segment %} active {% endif %}">
+            <a href="{% url 'app:index' %}">
               <i class="tim-icons icon-align-center"></i>
               <p> قطعات </p>
             </a>
           </li>
 
-          <li class="{% if 'app:stations' in segment %} active {% endif %}">
-            <a href="{% url 'app:stations' %}">
+          <li class="{% if 'app:index' in segment %} active {% endif %}">
+            <a href="{% url 'app:index' %}">
               <i class="tim-icons icon-settings"></i>
               <p> ایستگاه  </p>
             </a>
           </li>
 
 
-          <li class="{% if 'notices' in segment %} active {% endif %}">
-            <a href="{% url 'app:notices' %}">
+          <li class="{% if 'index' in segment %} active {% endif %}">
+            <a href="{% url 'app:index' %}">
               <i class="tim-icons icon-bell-55"></i>
               <p> اعلانات </p>
             </a>
@@ -56,19 +56,8 @@
               <p> پروفایل </p>
             </a>
           </li>
-          <li class="{% if 'ticket' in segment %} active {% endif %}">
-            <a href="{% url 'app:ticket' %}">
-              <i class="tim-icons icon-email-85"></i>
-              <p> تیکت </p>
-            </a>
-          </li>
 
-          <li class="{% if 'supplier' in segment %} active {% endif %}">
-            <a href="{% url 'app:mother_station' %}">
-              <i class="tim-icons icon-bullet-list-67"></i>
-              <p> ایستگاه های مادر </p>
-            </a>
-          </li>
+
 
           <li>
             <a href="{% url 'account_logout' %}" >
@@ -76,14 +65,7 @@
               <p> خروج </p>
             </a>
           </li>
-          {% else %}
-          <li class="">
-            <a target="_blank"
-               href="https://atrotech.ir">
-              <i class="tim-icons icon-spaceship"></i>
-              <p>Atro PRO Version</p>
-            </a>
-          </li>
+
           {% endif %}
 
         </ul>
