@@ -162,6 +162,7 @@ class Mold(models.Model):
     Cavities_id = models.CharField(max_length=40, null=True, blank=True, verbose_name = "شناسه حفره")
     Healthy_Cavities_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد حفره های سالم")
     Manufacturer = models.ForeignKey(Manufacturer ,on_delete=models.CASCADE ,null=True, blank=True, verbose_name = "سازنده")
+    Related_product = models.ManyToManyField(Product, related_name='Product', verbose_name = "محصولات مرتبط")
     Year = models.CharField(max_length=40, null=True, blank=True, verbose_name = "سال ساخت")                                     # Date just year
     Mold_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد قالب")
     Category = models.ForeignKey(Category ,on_delete=models.CASCADE ,null=True, blank=True, verbose_name = "دسته بندی")
