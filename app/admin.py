@@ -1,7 +1,7 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, PropertyImage
+from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from jalali_date import datetime2jalali, date2jalali
@@ -28,8 +28,8 @@ admin.site.register(models.Profile, ProfileAdmin)
 
 
 #------------------------------------------------------------------------------
-class PropertyImageInline(admin.TabularInline):
-    model = PropertyImage
+class MoldImageInline(admin.TabularInline):
+    model = MoldImage
     extra = 1
 
 class MoldAdmin(ImportExportModelAdmin):
@@ -37,7 +37,7 @@ class MoldAdmin(ImportExportModelAdmin):
     list_filter = ("Type", "Cavities_qty")
     search_fields = ['Name', 'Code']
     raw_id_fields = ('Category',)
-    inlines = [ PropertyImageInline, ]
+    inlines = [ MoldImageInline, ]
 
     '''
     fields = (
@@ -103,6 +103,24 @@ admin.site.register(Category, DraggableMPTTAdmin,
 
 
 
+
+
+
+
+#------------------------------------------------------------------------------
+class RepairImageInline(admin.TabularInline):
+    model = RepairImage
+    extra = 1
+
+class Repair_requestAdmin(ImportExportModelAdmin):
+    list_display = ('Mold','Applicant')
+    list_filter = ("Mold", "Applicant")
+    search_fields = ['Mold', 'Applicant']
+    raw_id_fields = ('Mold',)
+    inlines = [ RepairImageInline, ]
+
+
+admin.site.register(models.Repair_request, Repair_requestAdmin)
 
 
 

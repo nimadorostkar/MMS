@@ -169,13 +169,45 @@ class Mold(models.Model):
         verbose_name_plural = "قالب ها"
 
 #https://stackoverflow.com/questions/537593/multiple-images-per-model
-class PropertyImage(models.Model):
+class MoldImage(models.Model):
     property = models.ForeignKey(Mold, on_delete=models.CASCADE, related_name='images')
     Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")
 
     class Meta:
         verbose_name = "تصویر"
         verbose_name_plural = "تصویر ها"
+
+
+
+
+
+
+
+
+
+
+#------------------------------------------------------------------------------
+class Repair_request(models.Model):
+    Mold = models.ForeignKey(Mold ,on_delete=models.CASCADE, verbose_name = "قالب")
+    Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
+    Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "مشکل وارد شده")
+
+    def __str__(self):
+      return str(self.Name)
+
+    class Meta:
+        verbose_name = "درخواست تعمیر"
+        verbose_name_plural = "درخواست تعمیرات"
+
+class RepairImage(models.Model):
+    property = models.ForeignKey(Repair_request, on_delete=models.CASCADE, related_name='images')
+    Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")
+
+    class Meta:
+        verbose_name = "تصویر مشکل"
+        verbose_name_plural = "تصویر های مشکل"
+
+
 
 
 
