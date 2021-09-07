@@ -1,7 +1,7 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage, Repair_operation، OperationImage
+from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage, Repair_operation، OperationImage, Manufacture_request
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from jalali_date import datetime2jalali, date2jalali
@@ -160,6 +160,11 @@ admin.site.register(models.Repair_request, Repair_requestAdmin)
 
 
 
+
+#------------------------------------------------------------------------------
+class Manufacture_requestAdmin(ImportExportModelAdmin):
+    list_display = ('Mold','Status')
+admin.site.register(models.Manufacture_request, Manufacture_requestAdmin)
 
 
 

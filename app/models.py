@@ -270,6 +270,36 @@ class OperationImage(models.Model):
 
 
 
+#------------------------------------------------------------------------------
+class Manufacture_request(models.Model):
+    Mold = models.ForeignKey(Mold ,on_delete=models.CASCADE, verbose_name = "قالب")
+    Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
+    Progress_bar = models.IntegerRangeField(default=NumericRange(1, 101),blank=True,validators=[RangeMinValueValidator(1),RangeMaxValueValidator(100)], verbose_name = "درصد پیشرفت" )
+    Status=models.TextField(max_length=1000, null=True, blank=True, verbose_name = "وضعیت")
+    Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")
+    StartTime = models.DateTimeField(verbose_name = "تاریخ درخواست")
+    CheckTime = models.DateTimeField(verbose_name = "تاریخ بررسی")
+    EndTime = models.DateTimeField(verbose_name = "تاریخ اتمام")
+    CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
+    Status=models.CharField(max_length=20,choices=CHOICES,verbose_name = "وضعیت")
+
+    def __str__(self):
+      return str(self.Mold)
+
+    class Meta:
+        verbose_name = "درخواست تعمیر"
+        verbose_name_plural = "درخواست تعمیرات"
+
+    def j_StartTime(self):
+        return jalali_converter(self.StartTime)
+
+    def j_CheckTime(self):
+        return jalali_converter(self.CheckTime)
+
+    def j_EndTime(self):
+        return jalali_converter(self.EndTime)
+
+
 
 
 
