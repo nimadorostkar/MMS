@@ -313,6 +313,18 @@ class Component_request(models.Model):
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES,verbose_name = "وضعیت")
 
+    @property
+    def short_description(self):
+        return truncatechars(self.Description, 60)
+
+class ComponentImage(models.Model):
+    property = models.ForeignKey(Component_request, on_delete=models.CASCADE, related_name='images')
+    Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")
+
+    class Meta:
+        verbose_name = "تصویر ساخت"
+        verbose_name_plural = "تصاویر ساخت"
+
 
 
 

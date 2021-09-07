@@ -1,7 +1,9 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage, Repair_operation، OperationImage, Manufacture_request
+from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id,
+     MoldImage, Repair_request, RepairImage, Repair_operation، OperationImage, Manufacture_request,
+     Component_request, ComponentImage
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from jalali_date import datetime2jalali, date2jalali
@@ -167,6 +169,32 @@ class Manufacture_requestAdmin(ImportExportModelAdmin):
 admin.site.register(models.Manufacture_request, Manufacture_requestAdmin)
 
 
+
+
+
+
+#------------------------------------------------------------------------------
+class ComponentImageImageInline(admin.TabularInline):
+    model = ComponentImage
+    extra = 1
+
+class Component_requestAdmin(ImportExportModelAdmin):
+    list_display = ('short_description','Applicant','Status')
+    inlines = [ ComponentImageImageInline, ]
+
+    def get_created_jalali(self, obj):
+        return datetime2jalali(obj.StartTime).strftime('%y/%m/%d _ %H:%M:%S')
+    get_created_jalali.short_description = "تاریخ درخواست"
+
+    def get_created_jalali(self, obj):
+        return datetime2jalali(obj.CheckTime).strftime('%y/%m/%d _ %H:%M:%S')
+    get_created_jalali.short_description = "تاریخ بررسی"
+
+    def get_created_jalali(self, obj):
+        return datetime2jalali(obj.EndTime).strftime('%y/%m/%d _ %H:%M:%S')
+    get_created_jalali.short_description = "تاریخ اتمام"
+
+admin.site.register(models.Component_request, Component_requestAdmin)
 
 
 
