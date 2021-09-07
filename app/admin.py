@@ -1,7 +1,7 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage, Repair_operation
+from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage, Repair_operation، OperationImage
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from jalali_date import datetime2jalali, date2jalali
@@ -113,13 +113,15 @@ admin.site.register(Category, DraggableMPTTAdmin,
 
 
 #------------------------------------------------------------------------------
-class Repair_operationAdmin(ImportExportModelAdmin):
-    list_display = ('Step','short_description', 'Time')
-    list_filter = ("Step", "Time")
+class OperationImageInline(admin.TabularInline):
+    model = OperationImage
+    extra = 1
 
-    def get_created_jalali(self, obj):
-        return datetime2jalali(obj.Time).strftime('%y/%m/%d _ %H:%M:%S')
-    get_created_jalali.short_description = "تاریخ"
+class Repair_operationAdmin(ImportExportModelAdmin):
+    list_display = ('Step','short_description')
+    list_filter = ("Step", "Time")
+    inlines = [ OperationImageInline, ]
+
 
 admin.site.register(models.Repair_operation, Repair_operationAdmin)
 
@@ -143,8 +145,16 @@ class Repair_requestAdmin(ImportExportModelAdmin):
     inlines = [ RepairImageInline, ]
 
     def get_created_jalali(self, obj):
-        return datetime2jalali(obj.Time).strftime('%y/%m/%d _ %H:%M:%S')
-    get_created_jalali.short_description = "تاریخ"
+        return datetime2jalali(obj.StartTime).strftime('%y/%m/%d _ %H:%M:%S')
+    get_created_jalali.short_description = "تاریخ درخواست"
+
+    def get_created_jalali(self, obj):
+        return datetime2jalali(obj.CheckTime).strftime('%y/%m/%d _ %H:%M:%S')
+    get_created_jalali.short_description = "تاریخ بررسی"
+
+    def get_created_jalali(self, obj):
+        return datetime2jalali(obj.EndTime).strftime('%y/%m/%d _ %H:%M:%S')
+    get_created_jalali.short_description = "تاریخ اتمام"
 
 admin.site.register(models.Repair_request, Repair_requestAdmin)
 

@@ -199,8 +199,12 @@ class MoldImage(models.Model):
 class Repair_request(models.Model):
     Mold = models.ForeignKey(Mold ,on_delete=models.CASCADE, verbose_name = "قالب")
     Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
-    Time = models.DateTimeField(verbose_name = "تاریخ")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "مشکل وارد شده")
+    StartTime = models.DateTimeField(verbose_name = "تاریخ درخواست")
+    CheckTime = models.DateTimeField(verbose_name = "تاریخ بررسی")
+    EndTime = models.DateTimeField(verbose_name = "تاریخ اتمام")
+    CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
+    Status=models.CharField(max_length=20,choices=CHOICES,verbose_name = "وضعیت")
 
     def __str__(self):
       return str(self.Mold)
@@ -209,8 +213,14 @@ class Repair_request(models.Model):
         verbose_name = "درخواست تعمیر"
         verbose_name_plural = "درخواست تعمیرات"
 
-    def j_time(self):
-        return jalali_converter(self.Time)
+    def j_StartTime(self):
+        return jalali_converter(self.StartTime)
+
+    def j_CheckTime(self):
+        return jalali_converter(self.CheckTime)
+
+    def j_EndTime(self):
+        return jalali_converter(self.EndTime)
 
 class RepairImage(models.Model):
     property = models.ForeignKey(Repair_request, on_delete=models.CASCADE, related_name='images')
@@ -230,7 +240,7 @@ class Repair_operation(models.Model):
     Request = models.ForeignKey(Repair_request ,on_delete=models.CASCADE, verbose_name = "برای درخواست")
     Step = models.CharField(max_length=200, verbose_name = "گام")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات عملیات تعمیر")
-    Time = models.DateTimeField(verbose_name = "تاریخ")
+
 
     def __str__(self):
       return "گام : " + str(self.Step) + " درخواست تعمیر : " + str(self.Request)
@@ -243,8 +253,16 @@ class Repair_operation(models.Model):
         verbose_name = " عملیات تعمیر "
         verbose_name_plural = " عملیات تعمیرات "
 
-    def j_time(self):
-        return jalali_converter(self.Time)
+class OperationImage(models.Model):
+    property = models.ForeignKey(Repair_operation, on_delete=models.CASCADE, related_name='images')
+    Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")
+
+    class Meta:
+        verbose_name = "تصویر عملیات"
+        verbose_name_plural = "تصاویر عملیات"
+
+
+
 
 
 
