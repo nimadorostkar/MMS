@@ -18,12 +18,16 @@ admin.site.register(LogEntry)
 
 
 
+
 #------------------------------------------------------------------------------
 class ProfileAdmin(ImportExportModelAdmin):
     list_display = ('user_name','phone','address')
     search_fields = ['user_name', 'phone', 'address']
 
 admin.site.register(models.Profile, ProfileAdmin)
+
+
+
 
 
 
@@ -39,20 +43,10 @@ class MoldAdmin(ImportExportModelAdmin):
     raw_id_fields = ('Category',)
     inlines = [ MoldImageInline, ]
 
-    '''
-    fields = (
-        ('Name', 'Code'),
-        ('Type', 'Manufacturer', 'Material'),
-        ('Piece_id', 'Cavities_id'),
-        ('Cavities_qty', 'Healthy_Cavities_qty', 'Mold_qty'),
-        ('Related_product', 'Category'),
-        ('Image', 'File'),
-        ('Address', 'Year'),
-        'Description'
-        )
-    '''
-
 admin.site.register(models.Mold, MoldAdmin)
+
+
+
 
 
 
@@ -68,12 +62,17 @@ admin.site.register(models.Product, ProductAdmin)
 
 
 
+
+
 #------------------------------------------------------------------------------
 class ManufacturerAdmin(ImportExportModelAdmin):
     list_display = ('Name','short_description')
     search_fields = ['Name', 'short_description']
 
 admin.site.register(models.Manufacturer, ManufacturerAdmin)
+
+
+
 
 
 
@@ -85,10 +84,15 @@ admin.site.register(models.Mold_type, Mold_typeAdmin)
 
 
 
+
+
+
 #------------------------------------------------------------------------------
 class Piece_idAdmin(ImportExportModelAdmin):
     list_display = ('Name','Name')
 admin.site.register(models.Piece_id, Piece_idAdmin)
+
+
 
 
 
@@ -104,6 +108,10 @@ admin.site.register(Category, DraggableMPTTAdmin,
 
 
 
+
+
+
+
 #------------------------------------------------------------------------------
 class Repair_operationAdmin(ImportExportModelAdmin):
     list_display = ('Step','short_description', 'Time')
@@ -114,6 +122,10 @@ class Repair_operationAdmin(ImportExportModelAdmin):
     get_created_jalali.short_description = "تاریخ"
 
 admin.site.register(models.Repair_operation, Repair_operationAdmin)
+
+
+
+
 
 
 
@@ -133,7 +145,6 @@ class Repair_requestAdmin(ImportExportModelAdmin):
     def get_created_jalali(self, obj):
         return datetime2jalali(obj.Time).strftime('%y/%m/%d _ %H:%M:%S')
     get_created_jalali.short_description = "تاریخ"
-
 
 admin.site.register(models.Repair_request, Repair_requestAdmin)
 

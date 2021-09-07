@@ -46,6 +46,9 @@ class Profile(models.Model):
 
 
 
+
+
+
 #------------------------------------------------------------------------------
 class Product(models.Model):
     Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
@@ -69,6 +72,9 @@ class Product(models.Model):
 
 
 
+
+
+
 #------------------------------------------------------------------------------
 class Manufacturer(models.Model):
     Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
@@ -85,6 +91,8 @@ class Manufacturer(models.Model):
     class Meta:
         verbose_name = "سازنده"
         verbose_name_plural = "سازندگان"
+
+
 
 
 
@@ -111,6 +119,8 @@ class Category(MPTTModel):
 
 
 
+
+
 #------------------------------------------------------------------------------
 class Mold_type(models.Model):
     Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
@@ -124,6 +134,8 @@ class Mold_type(models.Model):
 
 
 
+
+
 #------------------------------------------------------------------------------
 class Piece_id(models.Model):
     Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
@@ -134,6 +146,7 @@ class Piece_id(models.Model):
     class Meta:
         verbose_name = "شناسه قطعه"
         verbose_name_plural = "شناسه قطعه ها"
+
 
 
 
@@ -205,6 +218,7 @@ class RepairImage(models.Model):
     class Meta:
         verbose_name = "تصویر مشکل"
         verbose_name_plural = "تصویر های مشکل"
+
 
 
 
