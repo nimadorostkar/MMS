@@ -1,0 +1,236 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+{% load mptt_tags %}
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card  card-plain" align="right" dir="rtl">
+      <div class="card-header">
+        <h3 class="card-title" dir="rtl" align="center"> قطعه {{ material.name }}</h3>
+
+        <div class="row">
+          <div class="col-md-6" align="right">
+            <button style="background-color:#0c5ba9bd;color:white;text-align:center;border-radius:8px;padding:10px;font-size:16px;border:none;"> کد:&nbsp;{{ material.code }} </button>
+          </div>
+          <div class="col-md-6" align="left">
+            <button style="background-color:#0c5ba9bd;color:white;text-align:center;border-radius:8px;padding:10px;font-size:16px;border:none;"> {{ material.position }} </button>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% if material.inventory <= material.min_inventory %}
+  <p align="right" dir="rtl" style="color:red;"> موجودی از حداقل کمتر است </p>
+{% endif %}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-body">
+        <p class="card-text">
+          <div class="author">
+            <div class="block block-one"></div>
+            <div class="block block-two"></div>
+            <div class="block block-three"></div>
+            <div class="block block-four"></div>
+            <img width="20%" src="{{ material.image.url }}">
+          </div>
+        </p>
+        <div align="right" dir="rtl" class="card-description">
+          <p class="category"> {{ material.description|linebreaks }} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="row" dir="rtl" align="right">
+
+  {% if material.position != 'سطح اولیه' %}
+  {% if material.position !=  'اقلام مصرفی' %}
+  <div class="col-md-6">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title" align="center">
+            BOM
+        </h4>
+      </div>
+      <div class="card-body" style="font-size:11px; color:black;">
+          <section id='eg1' class="ladder tree">
+                 <ul>
+                  {% recursetree bom %}
+                      <li>
+                        <a style="color:black;" href=".">
+                          {{ node.name.name }} &nbsp;&nbsp;&nbsp;
+                          ضریب مصرف: {{ node.quantity }} &nbsp;&nbsp;&nbsp;&nbsp;
+                          <img width="30px" src="{{ node.name.image.url }}" alt="Profile Photo">
+                          <hr>
+                        </a>
+                         <ul>{% if not node.is_leaf_node %}<li>{{ children }}</li>{% endif %}</ul>
+                      </li>
+                  {% endrecursetree %}
+                </ul>
+          </section>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endif %}
+
+  <div class="col-md-6">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title" align="center"> آمار  </h4>
+      </div>
+      <div class="card-body" style="font-size:11px; color:black; ">
+
+        <div class="row">
+          <div class="col-md-6">
+            <p>  موجودی :  {{ material.inventory.normalize }} {{ material.unit }} </p>
+          </div>
+          <div class="col-md-6">
+            <p> حداقل موجودی : {{ material.min_inventory.normalize }} {{ material.unit }} </p>
+          </div>
+        </div>
+        <hr><br>
+
+        <p style="color:black;">
+            ایستگاه های استفاده کننده:
+            {% for Station in stations %}
+             &nbsp;&nbsp;&nbsp;  <a style="color:black;" href="{{ Station.get_absolute_url }}"> {{ Station.name }} </a>
+            {% endfor %}
+        <hr><br>
+            <div id="relProduct"></div>
+        {% if material.position != 'سطح اولیه' %}
+        {% if material.position !=  'اقلام مصرفی' %}
+        <hr><br>
+            خروجی ایستگاه های:
+            {% for Station in exit_station %}
+               &nbsp;&nbsp;&nbsp; <a style="color:black;" href="{{ Station.get_absolute_url }}"> {{ Station.name }} </a>
+            {% endfor %}
+        <hr><br>
+            موجودی های خارج نشده
+            {% for Station in exit_station %}
+              {% if Station.inventory != 0 %}
+                &nbsp;&nbsp;&nbsp;  <a style="color:black;" href="{{ Station.get_absolute_url }}"> {{ Station.name }} </a>[ {{ Station.inventory.normalize }} ]
+              {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endif %}
+
+        <hr><br>
+            موجودی در قطعات دیگر:
+            {% for Bom_material in bom_material %}
+              {{ Bom_material.parent.name }}   &nbsp; {% widthratio Bom_material.parent.inventory Bom_material.quantity 1%}  &nbsp;&nbsp;&nbsp;
+              {{ Bom_material.relatedProduct.name }}  &nbsp; {% widthratio Bom_material.relatedProduct.inventory  Bom_material.quantity 1%} &nbsp;&nbsp;&nbsp;
+            {% endfor %}
+
+        </p>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+
+
+
+    var tree = [
+      {% for Tree in tree %}
+        { "name":"{{Tree.relatedProduct.name}}", "tot":1 },
+      {% endfor %}
+     ];
+
+      var relProduct_div = document.getElementById("relProduct");
+      var relProduct = tree.reduce(function (agg, obj) {
+        var objForName = agg.filter(function (nameObj) { return nameObj.name === obj.name})[0]
+
+        if (objForName) {
+          objForName.total += obj.tot;
+        } else {
+          agg.push({
+            name: obj.name,
+            total: obj.tot
+          })
+        }
+        return agg;
+      }, [])
+
+    for(var i=0; i < relProduct.length; i++){
+      relProduct_div.innerHTML += "<p>  محصولات استفاده کننده: &nbsp;&nbsp;&nbsp;"+relProduct[i].name+"</p> ";
+    }
+
+
+
+
+
+
+
+    $("#eg1 li ul").slideToggle(); // hide all nested lists
+    $("#eg1 li ul").prev("a").click(function(){ // add fn to list items that have a nested list
+        $(this).next("ul").slideToggle(100); // show/hide the nested list
+        return false; // prevent scrolling
+    });
+
+
+
+
+
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+    });
+
+
+
+  </script>
+
+{% endblock javascripts %}

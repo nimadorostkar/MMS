@@ -1,0 +1,424 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+{% load mptt_tags %}
+
+
+
+
+
+<div class="col-md-12">
+  <div class="card  card-plain" align="right" dir="rtl">
+    <div class="card-header">
+      <h4 class="card-title" dir="rtl" align="center"> محصول {{ product.name }} </h4>
+      <p> کد:   <small> ({{ product.synch_to.code }}) </small> </p>
+      <p> موجودی:   {{ product.synch_to.inventory.normalize }}  {{ product.synch_to.unit }} </p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-body">
+        <p class="card-text">
+          <div class="author">
+            <div class="block block-one"></div>
+            <div class="block block-two"></div>
+            <div class="block block-three"></div>
+            <div class="block block-four"></div>
+            <img width="20%" src="{{ product.synch_to.image.url }}">
+          </div>
+        </p>
+        <div align="right" dir="rtl" class="card-description">
+          <p class="category"> {{ product.synch_to.description|linebreaks }} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="row" dir="rtl" align="right">
+
+  <div class="col-md-7">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title"> BOM محصول </h4>
+      </div>
+      <div class="card-body">
+        {% for Bom_product in bom %}
+          <section id='eg1' class="ladder tree">
+            <ul>
+              <li>
+                <a href=".">
+                  {{ Bom_product.material }} &nbsp;&nbsp;&nbsp;&nbsp;
+                   ضریب مصرف: {{ Bom_product.inventory.normalize }} &nbsp;&nbsp;&nbsp;&nbsp;
+                  <img width="30px" src="{{ Bom_product.material.image.url }}" alt="Profile Photo">
+                  <hr>
+                </a>
+                 <ul>
+                  {% recursetree material_bom %}
+                   {% if node.relatedProduct.name == Bom_product.material.name %}
+                      <li>
+                        <a href=".">
+                          {{ node.name.name }} &nbsp;&nbsp;&nbsp;&nbsp;
+                          ضریب مصرف: {{ node.quantity.normalize }} &nbsp;&nbsp;&nbsp;&nbsp;
+                          <img width="30px" src="{{ node.name.image.url }}" alt="Profile Photo">
+                          <hr>
+                        </a>
+                         <ul>{% if not node.is_leaf_node %}<li>{{ children }}</li>{% endif %}</ul>
+                      </li>
+                    {% endif %}
+                  {% endrecursetree %}
+                </ul>
+              </li>
+            </ul>
+          </section>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title"> اقلام مصرفی </h4>
+      </div>
+      <div class="card-body">
+        <table class="table tablesorter " id="">
+          <thead class=" text-primary">
+            <tr>
+              <th>
+                نام
+              </th>
+              <th>
+                کد
+              </th>
+              <th>
+                ضریب مصرف
+              </th>
+              <th class="text-center">
+                تصویر
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for Bom_product in bom_masrafi %}
+            <tr>
+              <td><a href="{{ Bom_product.material.get_absolute_url }}"> {{ Bom_product.material.name }} </a></td>
+              <td> {{ Bom_product.material.code }} </td>
+              <td> {{ Bom_product.inventory.normalize }}</td>
+              <td class="text-center">
+                <div class="photo">
+                  <img src="{{ Bom_product.material.image.url }}" alt="Profile Photo">
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title" dir="rtl" align="center"> درخت محصول </h4> <hr>
+      </div>
+      <div class="card-body">
+          <div id="tree"> <div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="row" dir="rtl" align="right">
+
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title"> ایستگاه های درگیر </h4>
+      </div>
+      <div class="card-body">
+
+        <table class="table tablesorter " id="">
+          <thead class=" text-primary">
+            <tr>
+              <th>
+                نام
+              </th>
+              <th>
+                وضعیت
+              </th>
+              <th>
+                مسئول
+              </th>
+              <th>
+                توضیحات
+              </th>
+              <th>
+                موجودی
+              </th>
+              <th class="text-center">
+                قطعه خروجی
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for Tree in tree %}
+            <tr>
+              <td><a href="{{ Tree.station.get_absolute_url }}"> {{ Tree.station.name }} </a></td>
+              <td> {{ Tree.station.position }} </td>
+              <td> {{ Tree.station.manager }} </td>
+              <td> {{ Tree.station.description|slice:":60" }}... </td>
+              <td> {{ Tree.station.inventory.normalize }} </td>
+              <td class="text-center"> {{ Tree.station.output_material }} </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+<div class="row" dir="rtl" align="right">
+
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title"> سفارشات </h4>
+      </div>
+      <div class="card-body">
+        <table class="table tablesorter " id="">
+          <thead class=" text-primary">
+            <tr>
+              <th>
+                نام
+              </th>
+              <th>
+                کد
+              </th>
+              <th>
+                تیراژ
+              </th>
+              <th class="text-center">
+               تایید شده
+              </th>
+              <th class="text-center">
+               تکمیل شده
+              </th>
+              <th class="text-center">
+                تصویر
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for Order in order %}
+            <tr>
+              <td><a href="{{ Order.get_absolute_url }}"> {{ Order.product.name }} </a></td>
+              <td> {{ Order.code }} </td>
+              <td> {{ Order.circulation.normalize }} </td>
+              <td class="text-center">
+                {% if Order.confirmed %}
+                  <i style="color:green;" class="tim-icons icon-check-2"></i>
+                {% else %}
+                  <i style="color:red;" class="tim-icons icon-simple-remove"></i>
+                {% endif %}
+               </td>
+              <td class="text-center">
+                {% if Order.completed %}
+                  <i style="color:green;" class="tim-icons icon-check-2"></i>
+                {% else %}
+                  <i style="color:red;" class="tim-icons icon-simple-remove"></i>
+                {% endif %}
+              </td>
+              <td class="text-center">
+                <div class="photo">
+                  <img src="{{ Order.product.synch_to.image.url }}" alt="Profile Photo">
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row" dir="rtl" align="center">
+
+  <div class="col-md-4">
+    <div class="card card-user">
+
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card card-user">
+      <br>
+      <h4> فایل ضمیمه محصول </h4>
+      <br>
+       <a href="{{ product.file.url }}" download><button class="btn btn-outline-warning mr-3">Download</button></a>
+      <br>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card card-user">
+
+    </div>
+  </div>
+
+</div>
+
+<p dir="rtl" align="right"> تگ : {{ product.tag }} </p>
+
+
+
+
+
+<br> <br><br> <br><br> <br> <hr>
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+
+
+
+    $("#eg1 li ul").slideToggle(); // hide all nested lists
+    $("#eg1 li ul").prev("a").click(function(){ // add fn to list items that have a nested list
+        $(this).next("ul").slideToggle(100); // show/hide the nested list
+        return false; // prevent scrolling
+    });
+
+
+
+
+
+    window.onload = function () {
+        OrgChart.templates.ana.plus = '<circle cx="15" cy="15" r="15" fill="#ffffff" stroke="#aeaeae" stroke-width="1"></circle>'
+            + '<text text-anchor="middle" style="font-size: 18px;cursor:pointer;" fill="#757575" x="15" y="22">{collapsed-children-count}</text>';
+
+        var chart = new OrgChart(document.getElementById("tree"), {
+            template: "ana",
+            enableDragDrop: true,
+            assistantSeparation: 170,
+            align: OrgChart.ORIENTATION,
+            toolbar: {
+                fullScreen: true,
+                zoom: true,
+                fit: true,
+                expandAll: true
+            },
+            tags: {
+                    "نیرو خانگی": {
+                        template: "polina"
+                    },
+                    "انبار": {
+                        template: "rony"
+                    },
+                    "حمل و نقل": {
+                        template: "belinda"
+                    },
+                    "ایستگاه": {
+                        template: "ana"
+                    },
+                    "برون سپاری": {
+                        template: "ula"
+                    }
+                },
+            nodeBinding: {
+                field_0: "نام",
+                field_1: "موجودی",
+                field_2: "ورودی",
+                field_3: "خروجی",
+                field_4: "مسئول",
+                img_0: "img"
+            },
+        });
+
+        chart.load([
+              {% for Tree in tree %}
+                    {
+                      id: "{{ Tree.station }}",
+                      pid: "{{ Tree.parent_station }}",
+                      نام: "{{ Tree.station }}",
+                      موجودی: "{{ Tree.station.inventory.normalize }}",
+                      ورودی: "{% for input_material in Tree.station.input_material.all %} {{ input_material.name }} , {% endfor %}",
+                      مسئول: "{{ Tree.station.manager }}" ,
+                      خروجی:" {{ Tree.station.output_material }} " ,
+                      img: "{{ Tree.station.output_material.image.url }}",
+                      tags: ["{{ Tree.station.position }}"]
+                    },
+              {% endfor %}
+          ]);
+
+    };
+
+
+
+
+
+
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+    });
+
+
+
+  </script>
+
+{% endblock javascripts %}
