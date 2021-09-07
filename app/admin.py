@@ -1,7 +1,7 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold
+from .models import Profile, Mold, Manufacturer, Product
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from jalali_date import datetime2jalali, date2jalali
@@ -40,8 +40,23 @@ admin.site.register(models.Mold, MoldAdmin)
 
 
 
+#------------------------------------------------------------------------------
+class ProductAdmin(ImportExportModelAdmin):
+    list_display = ('Name','short_description','image_tag')
+    search_fields = ['Name', 'short_description']
+
+admin.site.register(models.Product, ProductAdmin)
 
 
+
+
+
+#------------------------------------------------------------------------------
+class ManufacturerAdmin(ImportExportModelAdmin):
+    list_display = ('Name','short_description')
+    search_fields = ['Name', 'short_description']
+
+admin.site.register(models.Manufacturer, ManufacturerAdmin)
 
 
 
