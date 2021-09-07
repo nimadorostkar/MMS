@@ -287,8 +287,8 @@ class Manufacture_request(models.Model):
       return str(self.Mold)
 
     class Meta:
-        verbose_name = "درخواست تعمیر"
-        verbose_name_plural = "درخواست تعمیرات"
+        verbose_name = "درخواست ساخت"
+        verbose_name_plural = "درخواست های ساخت"
 
     def j_StartTime(self):
         return jalali_converter(self.StartTime)
@@ -301,6 +301,17 @@ class Manufacture_request(models.Model):
 
 
 
+
+
+#------------------------------------------------------------------------------
+class Component_request(models.Model):
+    Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
+    Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "شرح درخواست")
+    StartTime = models.DateTimeField(verbose_name = "تاریخ درخواست")
+    CheckTime = models.DateTimeField(verbose_name = "تاریخ بررسی")
+    EndTime = models.DateTimeField(verbose_name = "تاریخ اتمام")
+    CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
+    Status=models.CharField(max_length=20,choices=CHOICES,verbose_name = "وضعیت")
 
 
 
