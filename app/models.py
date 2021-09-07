@@ -200,9 +200,9 @@ class Repair_request(models.Model):
     Mold = models.ForeignKey(Mold ,on_delete=models.CASCADE, verbose_name = "قالب")
     Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "مشکل وارد شده")
-    StartTime = models.DateTimeField(verbose_name = "تاریخ درخواست")
-    CheckTime = models.DateTimeField(verbose_name = "تاریخ بررسی")
-    EndTime = models.DateTimeField(verbose_name = "تاریخ اتمام")
+    StartTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ درخواست")
+    CheckTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ بررسی")
+    EndTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ اتمام")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES,verbose_name = "وضعیت")
 
@@ -277,9 +277,9 @@ class Manufacture_request(models.Model):
     Progress_bar = models.IntegerField(default='1', null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(100)], verbose_name = "درصد پیشرفت" )
     Status=models.TextField(max_length=1000, null=True, blank=True, verbose_name = "وضعیت")
     Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")
-    StartTime = models.DateTimeField(verbose_name = "تاریخ درخواست")
-    CheckTime = models.DateTimeField(verbose_name = "تاریخ بررسی")
-    EndTime = models.DateTimeField(verbose_name = "تاریخ اتمام")
+    StartTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ درخواست")
+    CheckTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ بررسی")
+    EndTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ اتمام")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES,verbose_name = "وضعیت")
 
@@ -307,9 +307,9 @@ class Manufacture_request(models.Model):
 class Component_request(models.Model):
     Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "شرح درخواست")
-    StartTime = models.DateTimeField(verbose_name = "تاریخ درخواست")
-    CheckTime = models.DateTimeField(verbose_name = "تاریخ بررسی")
-    EndTime = models.DateTimeField(verbose_name = "تاریخ اتمام")
+    StartTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ درخواست")
+    CheckTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ بررسی")
+    EndTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ اتمام")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES,verbose_name = "وضعیت")
 
