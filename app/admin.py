@@ -1,9 +1,7 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id,
-     MoldImage, Repair_request, RepairImage, Repair_operation، OperationImage, Manufacture_request,
-     Component_request, ComponentImage
+from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage, Repair_operation, OperationImage, Manufacture_request, Component_request, ComponentImage
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from jalali_date import datetime2jalali, date2jalali
@@ -120,8 +118,8 @@ class OperationImageInline(admin.TabularInline):
     extra = 1
 
 class Repair_operationAdmin(ImportExportModelAdmin):
-    list_display = ('Step','short_description')
-    list_filter = ("Step", "Time")
+    list_display = ('Step','Request','short_description')
+    list_filter = ("Step", "Request")
     inlines = [ OperationImageInline, ]
 
 

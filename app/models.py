@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 from django.template.defaultfilters import truncatechars
 from extensions.utils import jalali_converter
 from mptt.models import MPTTModel, TreeForeignKey
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 
@@ -274,7 +274,7 @@ class OperationImage(models.Model):
 class Manufacture_request(models.Model):
     Mold = models.ForeignKey(Mold ,on_delete=models.CASCADE, verbose_name = "قالب")
     Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
-    Progress_bar = models.IntegerRangeField(default=NumericRange(1, 101),blank=True,validators=[RangeMinValueValidator(1),RangeMaxValueValidator(100)], verbose_name = "درصد پیشرفت" )
+    Progress_bar = models.IntegerField(default='1', null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(100)], verbose_name = "درصد پیشرفت" )
     Status=models.TextField(max_length=1000, null=True, blank=True, verbose_name = "وضعیت")
     Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")
     StartTime = models.DateTimeField(verbose_name = "تاریخ درخواست")
@@ -287,8 +287,8 @@ class Manufacture_request(models.Model):
       return str(self.Mold)
 
     class Meta:
-        verbose_name = "درخواست ساخت"
-        verbose_name_plural = "درخواست های ساخت"
+        verbose_name = "درخواست ساخت قاب"
+        verbose_name_plural = "درخواست های ساخت قالب"
 
     def j_StartTime(self):
         return jalali_converter(self.StartTime)
@@ -316,6 +316,10 @@ class Component_request(models.Model):
     @property
     def short_description(self):
         return truncatechars(self.Description, 60)
+
+    class Meta:
+        verbose_name = "درخواست ساخت"
+        verbose_name_plural = "درخواست های ساخت"
 
 class ComponentImage(models.Model):
     property = models.ForeignKey(Component_request, on_delete=models.CASCADE, related_name='images')
