@@ -138,6 +138,7 @@ class Piece_id(models.Model):
 
 
 
+
 #------------------------------------------------------------------------------
 class Mold(models.Model):
     Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
@@ -152,7 +153,6 @@ class Mold(models.Model):
     Mold_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد قالب")
     Category = models.ForeignKey(Category ,on_delete=models.CASCADE ,null=True, blank=True, verbose_name = "دسته بندی")
     Material = models.CharField(max_length=40, null=True, blank=True, verbose_name = "متریال طراحی")                             #CHOICES
-    Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")     #multi image
     File = models.FileField(default='media/Default.png', null=True, blank=True, verbose_name ="فایل")
     Address = models.CharField(max_length=500, null=True, blank=True, verbose_name = "آدرس")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات")
@@ -168,8 +168,14 @@ class Mold(models.Model):
         verbose_name = "قالب"
         verbose_name_plural = "قالب ها"
 
+#https://stackoverflow.com/questions/537593/multiple-images-per-model
+class PropertyImage(models.Model):
+    property = models.ForeignKey(Mold, on_delete=models.CASCADE, related_name='images')
+    Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")
 
-
+    class Meta:
+        verbose_name = "تصویر"
+        verbose_name_plural = "تصویر ها"
 
 
 

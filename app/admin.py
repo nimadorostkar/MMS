@@ -1,7 +1,7 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id
+from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, PropertyImage
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from jalali_date import datetime2jalali, date2jalali
@@ -27,13 +27,17 @@ admin.site.register(models.Profile, ProfileAdmin)
 
 
 
-
 #------------------------------------------------------------------------------
+class PropertyImageInline(admin.TabularInline):
+    model = PropertyImage
+    extra = 1
+
 class MoldAdmin(ImportExportModelAdmin):
     list_display = ('Name','Code','Type','Cavities_qty','image_tag','Year')
     list_filter = ("Type", "Cavities_qty")
     search_fields = ['Name', 'Code']
     raw_id_fields = ('Category',)
+    inlines = [ PropertyImageInline, ]
 
     '''
     fields = (
@@ -76,26 +80,25 @@ admin.site.register(models.Manufacturer, ManufacturerAdmin)
 
 #------------------------------------------------------------------------------
 class Mold_typeAdmin(ImportExportModelAdmin):
+    list_display = ('Name','Name')
 admin.site.register(models.Mold_type, Mold_typeAdmin)
 
 
 
 #------------------------------------------------------------------------------
 class Piece_idAdmin(ImportExportModelAdmin):
+    list_display = ('Name','Name')
 admin.site.register(models.Piece_id, Piece_idAdmin)
+
 
 
 
 #------------------------------------------------------------------------------
 class CategoryMPTTModelAdmin(ImportExportMixin, MPTTModelAdmin, TreeRelatedFieldListFilter):
     mptt_level_indent = 15
-    #mptt_indent_field = "some_node_field"
 
 admin.site.register(Category, DraggableMPTTAdmin,
     list_display=('tree_actions', 'indented_title'),
-    #list_filter = (('relatedProduct', TreeRelatedFieldListFilter), )
-    #search_fields = ['tree_actions', 'indented_title']
-    #list_editable = ('relatedProduct','relatedProduct'),
     list_display_links=('indented_title',),)
 
 
