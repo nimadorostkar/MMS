@@ -92,7 +92,6 @@ class Manufacturer(models.Model):
 
 
 
-
 #------------------------------------------------------------------------------
 class Mold(models.Model):
     Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
@@ -128,6 +127,27 @@ class Mold(models.Model):
 
 
 
+
+#------------------------------------------------------------------------------
+# MPTT Model -->  https://django-mptt.readthedocs.io/en/latest/index.html
+class Category(MPTTModel):
+    name = models.ForeignKey(Mold, on_delete=models.CASCADE, related_name = "mat_name", verbose_name = "نام قالب")
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children',verbose_name = "والد")
+
+
+    class MPTTMeta:
+        level_attr = 'mptt_level'
+        order_insertion_by = ['name']
+
+    class Meta:
+        verbose_name = "دسته بندی"
+        verbose_name_plural = "دسته بندی ها"
+
+    def __unicode__(self):
+        return u"%s" % (self.name)
+
+    def __str__(self):
+        return str(self.name)
 
 
 

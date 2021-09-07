@@ -1,13 +1,12 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold, Manufacturer, Product
+from .models import Profile, Mold, Manufacturer, Product, Category
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from jalali_date import datetime2jalali, date2jalali
 from jalali_date.admin import ModelAdminJalaliMixin, StackedInlineJalaliMixin, TabularInlineJalaliMixin
-from mptt.admin import MPTTModelAdmin
-from mptt.admin import DraggableMPTTAdmin
+from mptt.admin import MPTTModelAdmin, TreeRelatedFieldListFilter, DraggableMPTTAdmin
 
 
 
@@ -35,6 +34,19 @@ class MoldAdmin(ImportExportModelAdmin):
     list_filter = ("Type", "Cavities_qty")
     search_fields = ['Name', 'Code']
 
+    '''
+    fields = (
+        ('Name', 'Code'),
+        ('Type', 'Manufacturer', 'Material'),
+        ('Piece_id', 'Cavities_id'),
+        ('Cavities_qty', 'Healthy_Cavities_qty', 'Mold_qty'),
+        ('Related_product', 'Category'),
+        ('Image', 'File'),
+        ('Address', 'Year'),
+        'Description'
+        )
+    '''
+
 admin.site.register(models.Mold, MoldAdmin)
 
 
@@ -57,6 +69,26 @@ class ManufacturerAdmin(ImportExportModelAdmin):
     search_fields = ['Name', 'short_description']
 
 admin.site.register(models.Manufacturer, ManufacturerAdmin)
+
+
+
+
+
+#------------------------------------------------------------------------------
+class CategoryMPTTModelAdmin(ImportExportMixin, MPTTModelAdmin, TreeRelatedFieldListFilter):
+    mptt_level_indent = 15
+    #mptt_indent_field = "some_node_field"
+
+admin.site.register(Category, DraggableMPTTAdmin,
+    list_display=('tree_actions', 'indented_title'),
+    #list_filter = (('relatedProduct', TreeRelatedFieldListFilter), )
+    #search_fields = ['tree_actions', 'indented_title']
+    #list_editable = ('relatedProduct','relatedProduct'),
+    list_display_links=('indented_title',),)
+
+
+
+
 
 
 
