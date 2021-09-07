@@ -21,8 +21,8 @@ import datetime
 #------------------------------------------------------------------------------
 @login_required()
 def index(request):
-    material = models.Material.objects.all()
-    context = {'material':material}
+    s = "ssss"
+    context = {'s':s}
     return render(request, 'index.html', context)
 
 
