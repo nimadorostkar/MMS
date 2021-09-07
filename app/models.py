@@ -178,29 +178,6 @@ class MoldImage(models.Model):
 
 
 
-#------------------------------------------------------------------------------
-class Repair_operation(models.Model):
-    Request = models.ForeignKey('Repair_request' ,on_delete=models.CASCADE, verbose_name = "برای درخواست")
-    Step = models.CharField(max_length=200, verbose_name = "گام")
-    Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات عملیات تعمیر")
-    Time = models.DateTimeField(verbose_name = "تاریخ")
-
-    def __str__(self):
-      return "گام : " + str(self.Step) + " درخواست تعمیر : " + str(self.Request)
-
-    @property
-    def short_description(self):
-        return truncatechars(self.Description, 60)
-
-    class Meta:
-        verbose_name = " عملیات تعمیر "
-        verbose_name_plural = " عملیات تعمیرات "
-
-    def j_time(self):
-        return jalali_converter(self.Time)
-
-
-
 
 
 
@@ -210,8 +187,6 @@ class Repair_request(models.Model):
     Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
     Time = models.DateTimeField(verbose_name = "تاریخ")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "مشکل وارد شده")
-    Operation = models.ForeignKey(Repair_operation ,on_delete=models.CASCADE, verbose_name = " عملیات تعمیر ")
-
 
     def __str__(self):
       return str(self.Mold)
@@ -231,6 +206,30 @@ class RepairImage(models.Model):
         verbose_name = "تصویر مشکل"
         verbose_name_plural = "تصویر های مشکل"
 
+
+
+
+
+#------------------------------------------------------------------------------
+class Repair_operation(models.Model):
+    Request = models.ForeignKey(Repair_request ,on_delete=models.CASCADE, verbose_name = "برای درخواست")
+    Step = models.CharField(max_length=200, verbose_name = "گام")
+    Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات عملیات تعمیر")
+    Time = models.DateTimeField(verbose_name = "تاریخ")
+
+    def __str__(self):
+      return "گام : " + str(self.Step) + " درخواست تعمیر : " + str(self.Request)
+
+    @property
+    def short_description(self):
+        return truncatechars(self.Description, 60)
+
+    class Meta:
+        verbose_name = " عملیات تعمیر "
+        verbose_name_plural = " عملیات تعمیرات "
+
+    def j_time(self):
+        return jalali_converter(self.Time)
 
 
 

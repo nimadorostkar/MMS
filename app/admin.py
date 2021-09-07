@@ -107,12 +107,12 @@ admin.site.register(Category, DraggableMPTTAdmin,
 #------------------------------------------------------------------------------
 class Repair_operationAdmin(ImportExportModelAdmin):
     list_display = ('Step','short_description', 'Time')
-    list_filter = ("Mold", "Applicant")
+    list_filter = ("Step", "Time")
 
     def get_created_jalali(self, obj):
         return datetime2jalali(obj.Time).strftime('%y/%m/%d _ %H:%M:%S')
     get_created_jalali.short_description = "تاریخ"
-    
+
 admin.site.register(models.Repair_operation, Repair_operationAdmin)
 
 
@@ -127,7 +127,7 @@ class Repair_requestAdmin(ImportExportModelAdmin):
     list_display = ('Mold','Applicant')
     list_filter = ("Mold", "Applicant")
     search_fields = ['Mold', 'Applicant']
-    raw_id_fields = ('Mold','Operation',)
+    raw_id_fields = ('Mold',)
     inlines = [ RepairImageInline, ]
 
     def get_created_jalali(self, obj):
