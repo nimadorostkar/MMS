@@ -46,8 +46,6 @@ class Profile(models.Model):
 
 
 
-
-
 #------------------------------------------------------------------------------
 class Product(models.Model):
     Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
@@ -92,9 +90,7 @@ class Manufacturer(models.Model):
 
 
 #------------------------------------------------------------------------------
-# MPTT Model -->  https://django-mptt.readthedocs.io/en/latest/index.html
 class Category(MPTTModel):
-    #name = models.ForeignKey(Mold, on_delete=models.CASCADE, related_name = "mat_name", verbose_name = "نام قالب")
     name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children',verbose_name = "والد")
 
@@ -115,6 +111,29 @@ class Category(MPTTModel):
 
 
 
+#------------------------------------------------------------------------------
+class Mold_type(models.Model):
+    Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
+
+    def __str__(self):
+      return str(self.Name)
+
+    class Meta:
+        verbose_name = "نوع قالب"
+        verbose_name_plural = "نوع قالب ها"
+
+
+
+#------------------------------------------------------------------------------
+class Piece_id(models.Model):
+    Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
+
+    def __str__(self):
+      return str(self.Name)
+
+    class Meta:
+        verbose_name = "شناسه قطعه"
+        verbose_name_plural = "شناسه قطعه ها"
 
 
 
@@ -123,17 +142,14 @@ class Category(MPTTModel):
 class Mold(models.Model):
     Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
     Code = models.CharField(max_length=40, null=True, blank=True, unique=True, verbose_name = "کد")
-    CHOICES = (('فلزی','فلزی'), ('پلاستیکی','پلاستیکی'), ('دایکست','دایکست'), ('فورج','فورج'))
-    Type = models.CharField(max_length=15, choices=CHOICES, verbose_name = "نوع قالب")
-    Piece_id = models.CharField(max_length=40, null=True, blank=True, unique=True, verbose_name = "شناسه قطعه")
+    Type = models.ForeignKey(Mold_type ,on_delete=models.CASCADE ,null=True, blank=True, verbose_name = "نوع قالب")
+    Piece_id = models.ForeignKey(Piece_id ,on_delete=models.CASCADE ,null=True, blank=True, verbose_name = "شناسه قطعه")
     Cavities_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد حفره")
     Cavities_id = models.CharField(max_length=40, null=True, blank=True, verbose_name = "شناسه حفره")
     Healthy_Cavities_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد حفره های سالم")
     Manufacturer = models.ForeignKey(Manufacturer ,on_delete=models.CASCADE ,null=True, blank=True, verbose_name = "سازنده")
     Year = models.CharField(max_length=40, null=True, blank=True, verbose_name = "سال ساخت")                                     # Date just year
     Mold_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد قالب")
-    Related_product = models.ManyToManyField(Product, related_name='Product', verbose_name = "محصولات مرتبط")
-    #Category = models.CharField(max_length=40, null=True, blank=True, verbose_name = "دسته بندی")                                #ForeignKey or MPTT
     Category = models.ForeignKey(Category ,on_delete=models.CASCADE ,null=True, blank=True, verbose_name = "دسته بندی")
     Material = models.CharField(max_length=40, null=True, blank=True, verbose_name = "متریال طراحی")                             #CHOICES
     Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")     #multi image
