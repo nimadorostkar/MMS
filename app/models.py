@@ -50,8 +50,8 @@ class Profile(models.Model):
 
 #------------------------------------------------------------------------------
 class Mold(models.Model):
-    name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
-    code = models.CharField(max_length=40, null=True, blank=True, unique=True, verbose_name = "کد")
+    Name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
+    Code = models.CharField(max_length=40, null=True, blank=True, unique=True, verbose_name = "کد")
     CHOICES = (('فلزی','فلزی'), ('پلاستیکی','پلاستیکی'), ('دایکست','دایکست'), ('فورج','فورج'))
     Type = models.CharField(max_length=15, choices=CHOICES, verbose_name = "نوع قالب")
     Piece_id = models.CharField(max_length=40, null=True, blank=True, unique=True, verbose_name = "شناسه قطعه")
