@@ -48,6 +48,44 @@ class Profile(models.Model):
 
 
 
+#------------------------------------------------------------------------------
+class Mold(models.Model):
+    name = models.CharField(max_length=200, unique=True, verbose_name = "نام")
+    code = models.CharField(max_length=40, null=True, blank=True, unique=True, verbose_name = "کد")
+    CHOICES = (('فلزی','فلزی'), ('پلاستیکی','پلاستیکی'), ('دایکست','دایکست'), ('فورج','فورج'))
+    Type = models.CharField(max_length=15, choices=CHOICES, verbose_name = "نوع قالب")
+    Piece_id = models.CharField(max_length=40, null=True, blank=True, unique=True, verbose_name = "شناسه قطعه")
+    Cavities_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد حفره")
+    Cavities_id = models.CharField(max_length=40, null=True, blank=True, verbose_name = "شناسه حفره")
+    Healthy_Cavities_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد حفره های سالم")
+    Manufacturer = models.CharField(max_length=40, null=True, blank=True, verbose_name = "سازنده")                            #ForeignKey
+    Year = models.CharField(max_length=40, null=True, blank=True, verbose_name = "سال ساخت")                                  # Date just year
+    Mold_qty = models.IntegerField(default='1', null=True, blank=True, verbose_name = "تعداد قالب")
+    Related_product = models.CharField(max_length=40, null=True, blank=True, verbose_name = "محصول مرتبط")                    #ForeignKey
+    Category = models.CharField(max_length=40, null=True, blank=True, verbose_name = "دسته بندی")                             #ForeignKey or MPTT
+    Material = models.CharField(max_length=40, null=True, blank=True, verbose_name = "متریال طراحی")                          #CHOICES
+    Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر")  #multi image
+    File = models.FileField(default='media/Default.png', null=True, blank=True, verbose_name ="فایل")
+    Address = models.CharField(max_length=500, null=True, blank=True, verbose_name = "آدرس")
+    Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات")
+
+
+    def image_tag(self):
+        return format_html("<img width=50 src='{}'>".format(self.Image.url))
+
+    def __str__(self):
+      return str(self.name)
+
+    class Meta:
+        verbose_name = "قالب"
+        verbose_name_plural = "قالب ها"
+
+
+
+
+
+
+
 
 
 
