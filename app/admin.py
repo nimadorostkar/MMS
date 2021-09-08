@@ -9,14 +9,9 @@ from jalali_date.admin import ModelAdminJalaliMixin, StackedInlineJalaliMixin, T
 from mptt.admin import MPTTModelAdmin, TreeRelatedFieldListFilter, DraggableMPTTAdmin
 
 
-
-
-
-
 admin.site.site_header= " توانکار "
 admin.site.site_title= "Tavankar"
 admin.site.register(LogEntry)
-
 
 
 
@@ -28,7 +23,6 @@ class ProfileAdmin(ImportExportModelAdmin):
     search_fields = ['user_name', 'phone', 'address']
 
 admin.site.register(models.Profile, ProfileAdmin)
-
 
 
 
@@ -53,15 +47,12 @@ admin.site.register(models.Mold, MoldAdmin)
 
 
 
-
 #------------------------------------------------------------------------------
 class ProductAdmin(ImportExportModelAdmin):
     list_display = ('Name','short_description','image_tag')
     search_fields = ['Name', 'short_description']
 
 admin.site.register(models.Product, ProductAdmin)
-
-
 
 
 
@@ -78,8 +69,6 @@ admin.site.register(models.Manufacturer, ManufacturerAdmin)
 
 
 
-
-
 #------------------------------------------------------------------------------
 class Mold_typeAdmin(ImportExportModelAdmin):
     list_display = ('Name','Name')
@@ -89,12 +78,10 @@ admin.site.register(models.Mold_type, Mold_typeAdmin)
 
 
 
-
 #------------------------------------------------------------------------------
 class Piece_idAdmin(ImportExportModelAdmin):
     list_display = ('Name','Name')
 admin.site.register(models.Piece_id, Piece_idAdmin)
-
 
 
 
@@ -113,8 +100,6 @@ admin.site.register(Category, DraggableMPTTAdmin,
 
 
 
-
-
 #------------------------------------------------------------------------------
 class OperationImageInline(admin.TabularInline):
     model = OperationImage
@@ -125,10 +110,7 @@ class Repair_operationAdmin(ImportExportModelAdmin):
     list_filter = ("Step", "Request")
     inlines = [ OperationImageInline, ]
 
-
 admin.site.register(models.Repair_operation, Repair_operationAdmin)
-
-
 
 
 
@@ -152,11 +134,11 @@ admin.site.register(models.Repair_request, Repair_requestAdmin)
 
 
 
+
 #------------------------------------------------------------------------------
 class Manufacture_requestAdmin(ImportExportModelAdmin):
     list_display = ('Mold','Status')
 admin.site.register(models.Manufacture_request, Manufacture_requestAdmin)
-
 
 
 
@@ -171,8 +153,11 @@ class Component_requestAdmin(ImportExportModelAdmin):
     list_display = ('short_description','Applicant','Status')
     inlines = [ ComponentImageImageInline, ]
 
-
 admin.site.register(models.Component_request, Component_requestAdmin)
+
+
+
+
 
 
 

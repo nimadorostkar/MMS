@@ -6,8 +6,6 @@ app_name='app'
 
 
 urlpatterns = [
-    # Matches any html file
-    re_path(r'^.*\.html', views.pages, name='pages'),
     # The home page
     path('', views.index, name='index'),
     # other

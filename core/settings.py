@@ -4,14 +4,12 @@ from unipath import Path
 import dj_database_url
 
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = Path(__file__).parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True)
@@ -33,10 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'app.config.AppConfig',
     'import_export',  # https://django-import-export.readthedocs.io/en/latest/index.html
-    'extra_settings', # https://github.com/fabiocaccamo/django-extra-settings
     'bootstrapform',  # https://django-bootstrap-form.readthedocs.io/en/latest/
-    #'jalali_date',     https://pypi.org/project/django-jalali-date/
-    #'extensions',
     'mptt',
     'allauth',        # Third Party - 1) All Auth
     'allauth.account',
@@ -49,21 +44,14 @@ INSTALLED_APPS = [
 
 # -------------------------- General Settings ----------------------------------
 
-
-
 WSGI_APPLICATION = 'core.wsgi.application'
-
-
 
 #DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 DEFAULT_AUTO_FIELD='django.db.models.BigAutoField'
 
-
-
 ROOT_URLCONF = 'core.urls'
 #LOGIN_REDIRECT_URL = "home"   # Route defined in app/urls.py
 #LOGOUT_REDIRECT_URL = "home"  # Route defined in app/urls.py
-
 
 
 AUTHENTICATION_BACKENDS = [
@@ -84,8 +72,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-
-
 
 
 

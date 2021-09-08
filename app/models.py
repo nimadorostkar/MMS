@@ -193,7 +193,6 @@ class MoldImage(models.Model):
 
 
 
-
 #------------------------------------------------------------------------------
 class Repair_request(models.Model):
     Mold = models.ForeignKey(Mold ,on_delete=models.CASCADE, verbose_name = "قالب")
@@ -259,8 +258,6 @@ class OperationImage(models.Model):
 
 
 
-
-
 #------------------------------------------------------------------------------
 class Manufacture_request(models.Model):
     Mold = models.ForeignKey(Mold ,on_delete=models.CASCADE, verbose_name = "قالب")
@@ -314,6 +311,9 @@ class ComponentImage(models.Model):
     class Meta:
         verbose_name = "تصویر ساخت"
         verbose_name_plural = "تصاویر ساخت"
+
+
+
 
 
 
