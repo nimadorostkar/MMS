@@ -22,7 +22,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_shortcuts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,69 +75,6 @@ MIDDLEWARE = [
 
 
 
-
-
-ADMIN_SHORTCUTS = [
-    {
-        'shortcuts': [
-            {
-                'url': '/',
-                'open_new_window': True,
-            },
-            {
-                'url_name': 'admin:logout',
-            },
-            {
-                'title': 'Users',
-                'url_name': 'admin:auth_user_changelist',
-                'count': 'example.utils.count_users',
-            },
-            {
-                'title': 'Groups',
-                'url_name': 'admin:auth_group_changelist',
-                'count': 'example.utils.count_groups',
-            },
-            {
-                'title': 'Add user',
-                'url_name': 'admin:auth_user_add',
-                'has_perms': 'example.utils.has_perms_to_users',
-            },
-        ]
-    },
-    {
-        'title': 'CMS',
-        'shortcuts': [
-            {
-                'title': 'Pages',
-                'url_name': 'admin:index',
-            },
-            {
-                'title': 'Files',
-                'url_name': 'admin:index',
-            },
-            {
-                'title': 'Contact forms',
-                'icon': 'columns',
-                'url_name': 'admin:index',
-                'count_new': '3',
-            },
-            {
-                'title': 'Products',
-                'url_name': 'admin:index',
-            },
-            {
-                'title': 'Orders',
-                'url_name': 'admin:index',
-                'count_new': '12',
-            },
-        ]
-    },
-]
-ADMIN_SHORTCUTS_SETTINGS = {
-    'show_on_all_pages': True,
-    'hide_app_list': True,
-    'open_new_window': False,
-}
 
 
 

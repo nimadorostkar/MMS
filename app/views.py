@@ -87,6 +87,23 @@ def search(request):
 
 
 
+#------------------------------------------------------------------------------
+@login_required()
+def mold(request):
+    molds = models.Mold.objects.all()
+    molds_img = models.MoldImage.objects.all()
+    return render(request, 'mold.html', {'molds': molds, 'molds_img':molds_img})
+
+
+@login_required()
+def mold_detail(request, id):
+    mold = get_object_or_404(models.Product, id=id)
+    context = {'mold': mold}
+    return render(request, 'mold_detail.html', context)
+
+
+
+
 
 
 

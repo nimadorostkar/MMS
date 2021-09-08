@@ -35,7 +35,7 @@ class MoldAdmin(ImportExportModelAdmin):
     list_display = ('Name','Code','Type','Cavities_qty','Year')
     list_filter = ("Type", "Cavities_qty")
     search_fields = ['Name', 'Code']
-    raw_id_fields = ('Category',)
+    raw_id_fields = ('Category', 'Type', 'Piece_id', 'Manufacturer')
     inlines = [ MoldImageInline, ]
 
 admin.site.register(models.Mold, MoldAdmin)
@@ -70,6 +70,7 @@ admin.site.register(models.Manufacturer, ManufacturerAdmin)
 #------------------------------------------------------------------------------
 class Mold_typeAdmin(ImportExportModelAdmin):
     list_display = ('Name','Name')
+    search_fields = ['Name']
 admin.site.register(models.Mold_type, Mold_typeAdmin)
 
 
@@ -79,6 +80,7 @@ admin.site.register(models.Mold_type, Mold_typeAdmin)
 #------------------------------------------------------------------------------
 class Piece_idAdmin(ImportExportModelAdmin):
     list_display = ('Name','Name')
+    search_fields = ['Name']
 admin.site.register(models.Piece_id, Piece_idAdmin)
 
 
@@ -106,6 +108,7 @@ class OperationImageInline(admin.TabularInline):
 class Repair_operationAdmin(ImportExportModelAdmin):
     list_display = ('Step','Request','short_description')
     list_filter = ("Step", "Request")
+    search_fields = ['Request','short_description']
     inlines = [ OperationImageInline, ]
 
 admin.site.register(models.Repair_operation, Repair_operationAdmin)

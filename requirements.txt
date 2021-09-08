@@ -13,5 +13,4 @@ Pillow
 django-allauth
 django-bootstrap-form
 django-import-export
-django-admin-shortcuts
 django-mptt

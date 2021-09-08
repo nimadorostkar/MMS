@@ -15,15 +15,15 @@
         <ul class="nav">
         {% if user.is_authenticated %}
 
-          <li class="{% if 'app:index' in segment %} active {% endif %}">
-            <a href="{% url 'app:index' %}">
+          <li class="{% if 'app:mold' in segment %} active {% endif %}">
+            <a href="{% url 'app:mold' %}">
               <i class="tim-icons icon-app"></i>
-              <p> محصول </p>
+              <p> قالب ها </p>
             </a>
           </li>
 
-          <li class="{% if 'app:index' in segment %} active {% endif %}">
-            <a href="{% url 'app:index' %}">
+          <li class="{% if 'app:mold' in segment %} active {% endif %}">
+            <a href="{% url 'app:mold' %}">
               <i class="tim-icons icon-notes"></i>
               <p> سفارشات </p>
             </a>

@@ -224,7 +224,7 @@ sup {
 }
 
 a {
-  color: #1d8cf8;
+  color: #63199a;
   text-decoration: none;
   background-color: transparent;
 }
@@ -16536,13 +16536,13 @@ h6 {
 }
 
 a {
-  color: #1d8cf8;
+  color: #63199a;
   font-weight: 300;
 }
 
 a:hover,
 a:focus {
-  color: #1d8cf8;
+  color: #63199a;
 }
 
 h1,
@@ -16702,11 +16702,12 @@ hr {
 }
 
 .table>tbody>tr>td .photo {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto;
+  border: 2px solid #63199a;
 }
 
 .table>tbody>tr>td .photo img {
@@ -20247,6 +20248,11 @@ Copyright (c) 2015 Daniel Eden
 
 .card-chart {
   overflow: hidden;
+}
+
+.card-lavender {
+  overflow: hidden;
+  background-color: #af81e23b!important;
 }
 
 .card-chart .card-header .card-title i {

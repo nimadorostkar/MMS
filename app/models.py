@@ -174,6 +174,9 @@ class Mold(models.Model):
     def __str__(self):
       return str(self.Name)
 
+    def get_absolute_url(self):
+        return reverse('app:mold_detail',args=[self.id])
+
     class Meta:
         verbose_name = "قالب"
         verbose_name_plural = "قالب ها"
