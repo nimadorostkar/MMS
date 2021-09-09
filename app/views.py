@@ -110,4 +110,8 @@ def mold_detail(request, id):
 
 
 
+
+
+
+
 # End
