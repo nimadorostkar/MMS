@@ -66,60 +66,83 @@
 
 
 <div class="row" dir="rtl" align="right">
-
-  <div class="col-md-7">
+  <div class="col-md-12">
     <div class="card card-user">
       <div class="card-header">
-        <h4 class="card-title"> BOM محصول </h4>
+        <h4 class="card-title"> اطلاعات کلی قالب {{ mold.Name }} </h4>
       </div>
       <div class="card-body">
-       jjjj
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-5">
-    <div class="card card-user">
-      <div class="card-header">
-        <h4 class="card-title"> اقلام مصرفی </h4>
-      </div>
-      <div class="card-body">
-        <table class="table tablesorter " id="">
+        <table class="table tablesorter text-center" id="">
           <thead class=" text-primary">
-            <tr>
-              <th>
-                نام
-              </th>
+            <tr class="bold">
               <th>
                 کد
               </th>
               <th>
-                ضریب مصرف
+                نوع قالب
               </th>
-              <th class="text-center">
-                تصویر
+              <th>
+                 شناسه قطعه
+              </th>
+              <th>
+                تعداد حفره
+              </th>
+              <th>
+               شناسه حفره
+              </th>
+              <th>
+                 تعداد حفره های سالم
+              </th>
+              <th>
+                سازنده
+              </th>
+              <th>
+                سال ساخت
+              </th>
+              <th>
+                تعداد قالب
+              </th>
+              <th>
+                متریال طراحی
+              </th>
+              <th>
+                آدرس
+              </th>
+              <th>
+                فایل
+              </th>
+              <th>
+                دسته بندی
+              </th>
+              <th>
+                محصولات مرتبط
               </th>
             </tr>
           </thead>
           <tbody>
-          {% for Bom_product in bom_masrafi %}
+
             <tr>
-              <td><a href="{{ Bom_product.material.get_absolute_url }}"> {{ Bom_product.material.name }} </a></td>
-              <td> {{ Bom_product.material.code }} </td>
-              <td> {{ Bom_product.inventory.normalize }}</td>
-              <td class="text-center">
-                <div class="photo">
-                  <img src="{{ Bom_product.material.image.url }}" alt="Profile Photo">
-                </div>
-              </td>
+              <td> {{ mold.Code }} </td>
+              <td> {{ mold.Type }} </td>
+              <td> {{ mold.Piece_id }} </td>
+              <td> {{ mold.Cavities_qty }} </td>
+              <td> {{ mold.Cavities_id }} </td>
+              <td> {{ mold.Healthy_Cavities_qty }} </td>
+              <td> {{ mold.Manufacturer }} </td>
+              <td> {{ mold.Year }} </td>
+              <td> {{ mold.Mold_qty }} </td>
+              <td> <a href="{{ mold.get_absolute_url }}"> {{ mold.Material }} </a></td>
+              <td> {{ mold.Address }} </td>
+              <td>  <a href="{{ mold.Address.url }}" download> دانلود </a> </td>
+              <td> {{ mold.Category }} </td>
+              <td> {% for Related_product in mold.Related_product.all %}{{ Related_product }}<br>{% endfor %} </td>
             </tr>
-          {% endfor %}
+
           </tbody>
         </table>
       </div>
     </div>
   </div>
-
 </div>
 
 
