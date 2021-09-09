@@ -3,7 +3,7 @@
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 500px;
+  max-width: 700px;
   position: relative;
   margin: auto;
 }
@@ -16,7 +16,7 @@
   width: auto;
   padding: 16px;
   margin-top: -22px;
-  color: white;
+  color: #9866de !important;
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
@@ -32,7 +32,7 @@
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+  background-color: #7513ff73;
 }
 
 

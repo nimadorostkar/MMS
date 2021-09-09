@@ -35,7 +35,6 @@
           </div>
         </p>
 
-
         <div class="slideshow-container">
           {% for MoldImage in mold_img %}
             {% if MoldImage.property == mold %}
@@ -50,13 +49,9 @@
 
         <br><br>
 
-
-
         <div align="right" dir="rtl" class="card-description">
           <p class="category"> {{ mold.Description|linebreaks }} </p>
         </div>
-
-
 
       </div>
     </div>
@@ -64,6 +59,68 @@
 </div>
 
 
+
+
+
+
+
+
+<div class="row" dir="rtl" align="right">
+
+  <div class="col-md-7">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title"> BOM محصول </h4>
+      </div>
+      <div class="card-body">
+       jjjj
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title"> اقلام مصرفی </h4>
+      </div>
+      <div class="card-body">
+        <table class="table tablesorter " id="">
+          <thead class=" text-primary">
+            <tr>
+              <th>
+                نام
+              </th>
+              <th>
+                کد
+              </th>
+              <th>
+                ضریب مصرف
+              </th>
+              <th class="text-center">
+                تصویر
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for Bom_product in bom_masrafi %}
+            <tr>
+              <td><a href="{{ Bom_product.material.get_absolute_url }}"> {{ Bom_product.material.name }} </a></td>
+              <td> {{ Bom_product.material.code }} </td>
+              <td> {{ Bom_product.inventory.normalize }}</td>
+              <td class="text-center">
+                <div class="photo">
+                  <img src="{{ Bom_product.material.image.url }}" alt="Profile Photo">
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 
 
