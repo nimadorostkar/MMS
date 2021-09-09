@@ -98,7 +98,8 @@ def mold(request):
 @login_required()
 def mold_detail(request, id):
     mold = get_object_or_404(models.Mold, id=id)
-    context = {'mold': mold}
+    mold_img = models.MoldImage.objects.all()
+    context = {'mold':mold, 'mold_img':mold_img}
     return render(request, 'mold_detail.html', context)
 
 

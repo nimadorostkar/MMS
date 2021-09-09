@@ -22,9 +22,6 @@
 
 
 
-
-
-
 <div class="row">
   <div class="col-md-12">
     <div class="card card-user">
@@ -37,11 +34,28 @@
             <div class="block block-four"></div>
           </div>
         </p>
+
+
+        <div class="slideshow-container">
+          {% for MoldImage in mold_img %}
+            {% if MoldImage.property == mold %}
+              <div class="mySlides mold_slide_fade">
+                <img src="{{ MoldImage.Image.url }}" style="width:100%">
+              </div>
+            {% endif %}
+          {% endfor %}
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <br><br>
+
+
+
         <div align="right" dir="rtl" class="card-description">
           <p class="category"> {{ mold.Description|linebreaks }} </p>
         </div>
 
-        <img width="20%" src="{{ product.synch_to.image.url }}">
 
 
       </div>
@@ -67,6 +81,32 @@
 {% block javascripts %}
 
   <script>
+
+
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+    }
+
 
 
     $(document).ready(function() {
