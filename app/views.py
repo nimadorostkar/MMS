@@ -106,6 +106,18 @@ def mold_detail(request, id):
 
 
 
+#------------------------------------------------------------------------------
+@login_required()
+def category(request):
+    category = models.Category.objects.all()
+    return render(request, 'category.html', {'category': category})
+
+
+@login_required()
+def category_detail(request, id):
+    category = get_object_or_404(models.Category, id=id)
+    context = {'category':category}
+    return render(request, 'category_detail.html', context)
 
 
 

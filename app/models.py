@@ -110,6 +110,9 @@ class Category(MPTTModel):
         verbose_name = "دسته بندی"
         verbose_name_plural = "دسته بندی ها"
 
+    def get_absolute_url(self):
+        return reverse('app:category_detail',args=[self.id])
+
     def __unicode__(self):
         return u"%s" % (self.name)
 
