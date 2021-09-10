@@ -5,6 +5,10 @@
 
 
 {% block content %}
+{% load mptt_tags %}
+
+
+
 
 
 <div class="row">
@@ -16,6 +20,43 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-body">
+
+          <ul>
+              {% recursetree category %}
+                  <li>
+                    <a href="{{ node.get_absolute_url }}"> {{ node.name }} </a>
+                      {% if not node.is_leaf_node %}
+                          <ul>
+                              {{ children }}
+                          </ul>
+                      {% endif %}
+                  </li>
+              {% endrecursetree %}
+          </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
 
 
