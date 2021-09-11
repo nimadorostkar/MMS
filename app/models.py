@@ -83,6 +83,9 @@ class Manufacturer(models.Model):
     def __str__(self):
       return str(self.Name)
 
+    def get_absolute_url(self):
+        return reverse('app:manufacturer_detail',args=[self.id])
+
     @property
     def short_description(self):
         return truncatechars(self.Description, 60)

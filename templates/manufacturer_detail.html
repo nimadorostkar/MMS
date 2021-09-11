@@ -1,0 +1,116 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-lavender">
+      <div class="card-header">
+        <h2 class="card-title" dir="rtl" align="center"> دسته بندی {{ category.name }} </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card" align="right" dir="rtl">
+      <div class="card-header"> لیست قالب های با دسته بندی {{ category.name }} </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter text-center" id="">
+            <thead class=" text-primary">
+              <tr class="bold">
+                <th>
+                  نام قالب
+                </th>
+                <th>
+                  کد
+                </th>
+                <th>
+                  نوع قالب
+                </th>
+                <th>
+                  تعداد حفر
+                </th>
+                <th>
+                  سازنده
+                </th>
+                <th>
+                  دسته بندی
+                </th>
+                <th>
+                  تصویر
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for Mold in molds %}
+            {% if Mold.Category == category %}
+              <tr>
+                <td><a href="{{ Mold.get_absolute_url }}"> {{ Mold.Name }} </a></td>
+                <td> {{ Mold.Code }} </td>
+                <td> {{ Mold.Type }} </td>
+                <td> {{ Mold.Cavities_qty }} </td>
+                <td> {{ Mold.Manufacturer }} </td>
+                <td> {{ Mold.Category }} </td>
+                <td>
+                  <div class="photo">
+                   {% for MoldImage in molds_img %}
+                    {% if MoldImage.property == Mold %}
+                     <img src="{{ MoldImage.Image.url }}">
+                    {% endif %}
+                   {% endfor %}
+                  </div>
+                </td>
+              </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+
+
+
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+
+{% endblock javascripts %}

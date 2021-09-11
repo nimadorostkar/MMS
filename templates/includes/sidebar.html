@@ -31,8 +31,15 @@
 
           <li class="{% if 'app:category' in segment %} active {% endif %}">
             <a href="{% url 'app:category' %}">
-              <i class="tim-icons icon-align-center"></i> 
+              <i class="tim-icons icon-align-center"></i>
               <p> دسته بندی </p>
+            </a>
+          </li>
+
+          <li class="{% if 'app:manufacturer' in segment %} active {% endif %}">
+            <a href="{% url 'app:manufacturer' %}">
+              <i class="tim-icons icon-single-02"></i>
+              <p> سازنده ها </p>
             </a>
           </li>
 
@@ -52,7 +59,7 @@
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
             <a href="{% url 'app:profile' %}">
-              <i class="tim-icons icon-single-02"></i>
+              <i class="tim-icons icon-badge"></i>
               <p> پروفایل </p>
             </a>
           </li>

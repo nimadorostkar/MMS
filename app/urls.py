@@ -17,6 +17,10 @@ urlpatterns = [
     path('category', views.category, name='category'),
     path('category_detail/<int:id>/',views.category_detail,name='category_detail'),
 
+    # Manufacturer
+    path('manufacturer', views.manufacturer, name='manufacturer'),
+    path('manufacturer_detail/<int:id>/',views.manufacturer_detail,name='manufacturer_detail'),
+
     # Other
     path('profile', views.profile, name='profile'),
     path('search',views.search,name='search'),

@@ -125,5 +125,25 @@ def category_detail(request, id):
 
 
 
+#------------------------------------------------------------------------------
+@login_required()
+def manufacturer(request):
+    manufacturers = models.Manufacturer.objects.all()
+    return render(request, 'manufacturer.html', {'manufacturers': manufacturers})
+
+
+@login_required()
+def manufacturer_detail(request, id):
+    manufacturer = get_object_or_404(models.Manufacturer, id=id)
+    molds = models.Mold.objects.all()
+    molds_img = models.MoldImage.objects.all()
+    context = {'manufacturer':manufacturer, 'molds':molds, 'molds_img':molds_img}
+    return render(request, 'manufacturer_detail.html', context)
+
+
+
+
+
+
 
 # End

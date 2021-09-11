@@ -1,0 +1,87 @@
+{% extends "layouts/base.html" %}
+{% block title %} Dashboard {% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+
+{% block content %}
+{% load mptt_tags %}
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-lavender">
+      <div class="card-header">
+        <h3 class="card-title" dir="rtl" align="center"> دسته بندی ها </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-body">
+          <section id='eg1' class="ladder tree">
+              <ul>
+               {% recursetree category %}
+                   <li>
+                      <br>
+                      <a href="{{ node.get_absolute_url }}"> &nbsp;&nbsp;&nbsp;&nbsp; {{ node.name }}</a>  <a style="color:black;" href="."> <small><i class="tim-icons icon-minimal-down" style="color:grey;"></i></small> </a>
+                      <ul>{% if not node.is_leaf_node %}<li>{{ children }}</li>{% endif %}</ul>
+                   </li>
+               {% endrecursetree %}
+              </ul>
+          </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+  <script>
+
+
+
+
+
+    $("#eg1 li ul").slideToggle(); // hide all nested lists
+    $("#eg1 li ul").prev("a").click(function(){ // add fn to list items that have a nested list
+        $(this).next("ul").slideToggle(100); // show/hide the nested list
+        return false; // prevent scrolling
+    });
+
+
+
+
+
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+{% endblock javascripts %}
