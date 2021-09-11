@@ -17,7 +17,6 @@ import datetime
 
 
 
-
 #------------------------------------------------------------------------------
 @login_required()
 def index(request):
@@ -105,7 +104,6 @@ def mold_detail(request, id):
 
 
 
-
 #------------------------------------------------------------------------------
 @login_required()
 def category(request):
@@ -118,7 +116,6 @@ def category_detail(request, id):
     category = get_object_or_404(models.Category, id=id)
     context = {'category':category}
     return render(request, 'category_detail.html', context)
-
 
 
 
