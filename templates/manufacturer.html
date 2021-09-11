@@ -15,7 +15,7 @@
   <div class="col-md-12">
     <div class="card card-lavender">
       <div class="card-header">
-        <h3 class="card-title" dir="rtl" align="center"> دسته بندی ها </h3>
+        <h3 class="card-title" dir="rtl" align="center"> سازنده ها </h3>
       </div>
     </div>
   </div>
@@ -34,17 +34,12 @@
   <div class="col-md-12">
     <div class="card card-user">
       <div class="card-body">
-          <section id='eg1' class="ladder tree">
-              <ul>
-               {% recursetree category %}
-                   <li>
-                      <br>
-                      <a href="{{ node.get_absolute_url }}"> &nbsp;&nbsp;&nbsp;&nbsp; {{ node.name }}</a>  <a style="color:black;" href="."> <small><i class="tim-icons icon-minimal-down" style="color:grey;"></i></small> </a>
-                      <ul>{% if not node.is_leaf_node %}<li>{{ children }}</li>{% endif %}</ul>
-                   </li>
-               {% endrecursetree %}
-              </ul>
-          </section>
+
+               {% for Manufacturer in manufacturers %}
+               <hr>
+                <a href="{{ Manufacturer.get_absolute_url }}"> <h4> &nbsp;&nbsp;&nbsp;&nbsp;{{ Manufacturer.Name }} </h4> </a>
+               {% endfor%}
+
       </div>
     </div>
   </div>

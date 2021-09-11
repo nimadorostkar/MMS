@@ -12,7 +12,7 @@
   <div class="col-md-12">
     <div class="card card-lavender">
       <div class="card-header">
-        <h2 class="card-title" dir="rtl" align="center"> دسته بندی {{ category.name }} </h2>
+        <h2 class="card-title" dir="rtl" align="center"> سازنده؛ {{ manufacturer.Name }} </h2>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card" align="right" dir="rtl">
-      <div class="card-header"> لیست قالب های با دسته بندی {{ category.name }} </div>
+      <div class="card-header"> لیست قالب های ساخته شده توسط {{ manufacturer.Name }} </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table tablesorter text-center" id="">
@@ -59,7 +59,7 @@
             </thead>
             <tbody>
             {% for Mold in molds %}
-            {% if Mold.Category == category %}
+            {% if Mold.Manufacturer == manufacturer %}
               <tr>
                 <td><a href="{{ Mold.get_absolute_url }}"> {{ Mold.Name }} </a></td>
                 <td> {{ Mold.Code }} </td>
