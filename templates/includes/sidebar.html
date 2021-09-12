@@ -32,7 +32,21 @@
           <li class="{% if 'app:mold' in segment %} active {% endif %}">
             <a href="{% url 'app:mold' %}">
               <i class="tim-icons icon-notes"></i>
-              <p> سفارشات </p>
+              <p> درخواست ساخت </p>
+            </a>
+          </li>
+
+          <li class="{% if 'app:index' in segment %} active {% endif %}">
+            <a href="{% url 'app:index' %}">
+              <i class="tim-icons icon-settings"></i>
+              <p> درخواست تعمیر  </p>
+            </a>
+          </li>
+
+          <li class="{% if 'app:category' in segment %} active {% endif %}">
+            <a href="{% url 'app:category' %}">
+              <i class="tim-icons icon-components"></i>
+              <p> ساخت ها </p>
             </a>
           </li>
 
@@ -50,20 +64,7 @@
             </a>
           </li>
 
-          <li class="{% if 'app:index' in segment %} active {% endif %}">
-            <a href="{% url 'app:index' %}">
-              <i class="tim-icons icon-settings"></i>
-              <p> ایستگاه  </p>
-            </a>
-          </li>
 
-
-          <li class="{% if 'index' in segment %} active {% endif %}">
-            <a href="{% url 'app:index' %}">
-              <i class="tim-icons icon-bell-55"></i>
-              <p> اعلانات </p>
-            </a>
-          </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
             <a href="{% url 'app:profile' %}">
               <i class="tim-icons icon-badge"></i>
