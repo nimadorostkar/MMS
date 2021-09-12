@@ -24,6 +24,37 @@
 
 
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-body">
+        <p class="card-text">
+          <div class="author">
+            <div class="block block-one"></div>
+            <div class="block block-two"></div>
+            <div class="block block-three"></div>
+            <div class="block block-four"></div>
+          </div>
+        </p>
+        <div align="center">
+            <img src="{{ product.Image.url }}" style="width:400px">
+        </div>
+        <br><br>
+        <div align="right" dir="rtl" class="card-description">
+          <p class="category"> {{ product.Description|linebreaks }} </p>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 <div class="row">
   <div class="col-md-12">
@@ -59,7 +90,8 @@
             </thead>
             <tbody>
             {% for Mold in molds %}
-            {% if Mold.Related_product == product %}
+            {% for Related_product in Mold.Related_product.all %}
+            {% if Related_product == product %}
               <tr>
                 <td><a href="{{ Mold.get_absolute_url }}"> {{ Mold.Name }} </a></td>
                 <td> {{ Mold.Code }} </td>
@@ -78,6 +110,7 @@
                 </td>
               </tr>
             {% endif %}
+            {% endfor %}
             {% endfor %}
             </tbody>
           </table>
