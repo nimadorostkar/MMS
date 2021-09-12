@@ -159,7 +159,7 @@ def product_detail(request, id):
     molds = models.Mold.objects.all()
     molds_img = models.MoldImage.objects.all()
     context = {'product':product, 'molds':molds, 'molds_img':molds_img}
-    return render(request, 'manufacturer_detail.html', context)
+    return render(request, 'product_detail.html', context)
 
 
 

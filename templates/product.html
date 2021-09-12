@@ -27,23 +27,44 @@
 
 
 
-
-
-
 <div class="row">
   <div class="col-md-12">
-    <div class="card card-user">
+    <div class="card" align="right" dir="rtl">
+      <div class="card-header"> لیست تمامی محصولات </div>
       <div class="card-body">
-
-               {% for Product in products %}
-               <hr>
-                <a href="{{ Product.get_absolute_url }}"> <h4> &nbsp;&nbsp;{{ Product.Name }} </h4> </a>
-               {% endfor%}
-
+        <div class="table-responsive">
+          <table class="table tablesorter text-center" id="">
+            <thead class=" text-primary">
+              <tr class="bold">
+                <th>
+                  نام
+                </th>
+                <th>
+                  توضیحات
+                </th>
+                <th>
+                  تصویر
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for Product in products %}
+              <tr>
+                <td><a href="{{ Product.get_absolute_url }}"> {{ Product.Name }} </a></td>
+                <td> {{ Product.Description|slice:":80" }}... </td>
+                <td> <div class="photo"> <img src="{{ Product.Image.url }}"> </div> </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
 
 
 

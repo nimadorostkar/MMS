@@ -59,7 +59,7 @@
             </thead>
             <tbody>
             {% for Mold in molds %}
-            {% if Mold.product == product %}
+            {% if Mold.Related_product == product %}
               <tr>
                 <td><a href="{{ Mold.get_absolute_url }}"> {{ Mold.Name }} </a></td>
                 <td> {{ Mold.Code }} </td>

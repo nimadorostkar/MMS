@@ -64,9 +64,6 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('app:product_detail',args=[self.id])
 
-    def __str__(self):
-      return str(self.Name)
-
     @property
     def short_description(self):
         return truncatechars(self.Description, 60)
