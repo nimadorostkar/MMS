@@ -21,6 +21,10 @@ urlpatterns = [
     path('manufacturer', views.manufacturer, name='manufacturer'),
     path('manufacturer_detail/<int:id>/',views.manufacturer_detail,name='manufacturer_detail'),
 
+    # Product
+    path('product', views.product, name='product'),
+    path('product_detail/<int:id>/',views.product_detail,name='product_detail'),
+
     # Other
     path('profile', views.profile, name='profile'),
     path('search',views.search,name='search'),

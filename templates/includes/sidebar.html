@@ -17,8 +17,15 @@
 
           <li class="{% if 'app:mold' in segment %} active {% endif %}">
             <a href="{% url 'app:mold' %}">
-              <i class="tim-icons icon-app"></i>
+              <i class="tim-icons icon-puzzle-10"></i>
               <p> قالب ها </p>
+            </a>
+          </li>
+
+          <li class="{% if 'app:product' in segment %} active {% endif %}">
+            <a href="{% url 'app:product' %}">
+              <i class="tim-icons icon-app"></i>
+              <p> محصولات  </p>
             </a>
           </li>
 
