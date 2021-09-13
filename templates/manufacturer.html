@@ -35,10 +35,28 @@
     <div class="card card-user">
       <div class="card-body">
 
-               {% for Manufacturer in manufacturers %}
-               <hr>
-                <a href="{{ Manufacturer.get_absolute_url }}"> <h4> &nbsp;&nbsp;&nbsp;&nbsp;{{ Manufacturer.Name }} </h4> </a>
-               {% endfor%}
+        <div class="table-responsive">
+          <table class="table tablesorter text-center" dir="rtl" align="center">
+            <thead class="text-primary">
+              <tr class="bold">
+                <th>
+                  سازنده
+                </th>
+                <th>
+                   توضیحات
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for Manufacturer in manufacturers %}
+              <tr>
+                <td> <a href="{{ Manufacturer.get_absolute_url }}">  {{ Manufacturer.Name }} </a> </td>
+                <td> {{ Manufacturer.Description|slice:":100" }}.. </td>
+              </tr>
+              {% endfor%}
+            </tbody>
+          </table>
+        </div>
 
       </div>
     </div>
