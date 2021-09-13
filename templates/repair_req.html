@@ -11,7 +11,7 @@
   <div class="col-md-12">
     <div class="card card-lavender">
       <div class="card-header">
-        <h3 class="card-title" dir="rtl" align="center"> درخواست های تعمیر قالب  </h3>
+        <h3 class="card-title" dir="rtl" align="center"> درخواست های تعمیر قالب </h3>
       </div>
     </div>
   </div>
@@ -41,18 +41,26 @@
                   وضعیت
                 </th>
                 <th>
-                  درصد پیشرفت
+                 تصویر مشکل
                 </th>
               </tr>
             </thead>
             <tbody>
-            {% for Manufacture_request in manufacture_requests %}
+            {% for Repair_request in repair_requests %}
               <tr>
-                <td><a href="{{ Manufacture_request.get_absolute_url }}"> ساخت {{ Manufacture_request.Mold }} </a></td>
-                <td> {{ Manufacture_request.Applicant }} </td>
-                <td> {{ Manufacture_request.StartTime }} </td>
-                <td> {{ Manufacture_request.Status }} </td>
-                <td> <progress value="{{ Manufacture_request.Progress_bar }}" max="100"> </progress> {{ Manufacture_request.Progress_bar }}% </td>
+                <td><a href="{{ Repair_request.get_absolute_url }}"> تعمیر {{ Repair_request.Mold }} </a></td>
+                <td> {{ Repair_request.Applicant }} </td>
+                <td> {{ Repair_request.StartTime }} </td>
+                <td> {{ Repair_request.Status }} </td>
+                <td>
+                  <div class="photo">
+                   {% for RepairImage in repair_img %}
+                    {% if RepairImage.property == Repair_request %}
+                     <img src="{{ RepairImage.Image.url }}">
+                    {% endif %}
+                   {% endfor %}
+                  </div>
+                </td>
               </tr>
             {% endfor %}
             </tbody>

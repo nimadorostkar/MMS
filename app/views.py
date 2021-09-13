@@ -185,13 +185,15 @@ def manufacture_req_detail(request, id):
 @login_required()
 def repair_req(request):
     repair_requests = models.Repair_request.objects.all()
-    return render(request, 'repair_req.html', {'manufacture_requests': manufacture_requests})
+    repair_img = models.RepairImage.objects.all()
+    return render(request, 'repair_req.html', {'repair_requests': repair_requests, "repair_img":repair_img})
 
 
 @login_required()
 def repair_req_detail(request, id):
     repair_request = get_object_or_404(models.Repair_request, id=id)
-    context = {'manufacture_request':manufacture_requestg}
+    repair_img = models.RepairImage.objects.all()
+    context = {'repair_request':repair_request, 'repair_img':repair_img}
     return render(request, 'repair_req_detail.html', context)
 
 

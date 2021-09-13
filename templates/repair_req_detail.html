@@ -12,7 +12,7 @@
   <div class="col-md-12">
     <div class="card card-lavender">
       <div class="card-header">
-        <h2 class="card-title" dir="rtl" align="center"> درخواست ساخت؛ <a href="{{ manufacture_request.Mold.get_absolute_url }}">{{ manufacture_request.Mold }}</a> </h2>
+        <h2 class="card-title" dir="rtl" align="center"> درخواست تعمیر؛ <a href="{{ repair_request.Mold.get_absolute_url }}">{{ repair_request.Mold }}</a> </h2>
       </div>
     </div>
   </div>
@@ -50,20 +50,18 @@
             </thead>
             <tbody>
               <tr>
-                <td> {{ manufacture_request.Applicant }} </td>
-                <td> {{ manufacture_request.StartTime }} </td>
-                <td> {{ manufacture_request.CheckTime }} </td>
-                <td> {{ manufacture_request.EndTime }} </td>
-                <td> {{ manufacture_request.Status }} </td>
+                <td> {{ repair_request.Applicant }} </td>
+                <td> {{ repair_request.StartTime }} </td>
+                <td> {{ repair_request.CheckTime }} </td>
+                <td> {{ repair_request.EndTime }} </td>
+                <td> {{ repair_request.Status }} </td>
               </tr>
             </tbody>
           </table>
         </div>
-
-        <div class="card-header"> <h4> توضیحات </h4> </div>
-        <p class="category"> {{ manufacture_request.Description|linebreaks }} </p>
+        <div class="card-header"> <h4> توضیحات مشکل وارد شده </h4> </div>
+        <p class="category"> {{ repair_request.Description|linebreaks }} </p>
         <br>
-
       </div>
     </div>
   </div>
@@ -75,26 +73,22 @@
 
 
 <div class="row">
-  <div class="col-md-12" align="left">
-      <div class="card-body">
-        <h4> درصد پیشرفت </h4>
-        <div class="progress">
-          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ manufacture_request.Progress_bar }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ manufacture_request.Progress_bar }}%">
-            {{ manufacture_request.Progress_bar }}%
-          </div>
-        </div>
-        <br>
-      </div>
-  </div>
-
-  <div class="col-md-12" align="right">
+  <div class="col-md-12">
     <div class="card card-user">
-      <div class="card-header">
-        <h4> تصویر آخرین وضعیت ساخت </h4>
+      <div class="card-header" align="center">
+        <h4> تصاویر مشکل وارد شده </h4>
       </div>
       <div class="card-body">
-        <div align="center">
-            <img src="{{ manufacture_request.Image.url }}" style="width:400px">
+        <div class="slideshow-container">
+          {% for RepairImage in repair_img %}
+            {% if RepairImage.property == repair_request %}
+              <div class="mySlides mold_slide_fade">
+                <img src="{{ RepairImage.Image.url }}" style="width:100%">
+              </div>
+            {% endif %}
+          {% endfor %}
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
       </div>
     </div>
@@ -122,6 +116,31 @@
 {% block javascripts %}
 
   <script>
+
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          if (n > slides.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+          }
+          slides[slideIndex-1].style.display = "block";
+          dots[slideIndex-1].className += " active";
+        }
+
 
 
 
