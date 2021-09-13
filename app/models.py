@@ -243,7 +243,8 @@ class RepairImage(models.Model):
 #------------------------------------------------------------------------------
 class Repair_operation(models.Model):
     Request = models.ForeignKey(Repair_request ,on_delete=models.CASCADE, verbose_name = "برای درخواست")
-    Step = models.CharField(max_length=200, verbose_name = "گام")
+    CHOICES = ( ('اول','اول'), ('دوم','دوم'), ('سوم','سوم'), ('چهارم','چهارم'), ('پنجم','پنجم'), ('ششم','ششم'), ('هفتم','هفتم'), ('هشتم','هشتم'), ('نهم','نهم'), ('دهم','دهم') )
+    Step=models.CharField(max_length=20,choices=CHOICES, verbose_name = "گام")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات عملیات تعمیر")
 
 
