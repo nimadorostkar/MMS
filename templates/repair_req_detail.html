@@ -100,7 +100,7 @@
 
    <div class="col-md-3" align="right" dir="rtl">
      <div class="card card-user">
-       <div class="card-header"> <h4> گام {{ Repair_operation.Step }} </h4> </div>
+       <div class="card-header"> <h4 style="color:#63199a;"> گام {{ Repair_operation.Step }} </h4> </div>
        <div class="card-body">
          <p> {{ Repair_operation.Description|slice:":150" }}... </p>
          <br>
@@ -111,7 +111,7 @@
           {% endif %}
          {% endfor %}
          <hr>
-         <a href="{{ Repair_operation.get_absolute_url }}"> <p> مشاهده جزئیات </p> </a>
+         <a href="{{ Repair_operation.get_absolute_url }}"> مشاهده جزئیات </a>
          </div>
 
        </div>
