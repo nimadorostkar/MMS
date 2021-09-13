@@ -311,15 +311,16 @@ class Component_request(models.Model):
     StartTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ درخواست")
     CheckTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ بررسی")
     EndTime = models.DateTimeField(null=True, blank=True, verbose_name = "تاریخ اتمام")
+    Progress_bar = models.IntegerField(default='1', null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(100)], verbose_name = "درصد پیشرفت" )
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
-    Status=models.CharField(max_length=20,choices=CHOICES,verbose_name = "وضعیت")
+    Status=models.CharField(max_length=20,choices=CHOICES, default='نامشخص', verbose_name = "وضعیت")
 
     @property
     def short_description(self):
-        return truncatechars(self.Description, 60)
+        return truncatechars(self.Description, 40)
 
     def __str__(self):
-      return str(self.Description)
+      return str(self.short_description)
 
 
     class Meta:
