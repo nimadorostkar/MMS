@@ -210,6 +210,20 @@ def repair_operation_detail(request, id):
 
 
 
+#------------------------------------------------------------------------------
+@login_required()
+def component_req(request):
+    component_requests = models.Component_request.objects.all()
+    return render(request, 'component_req.html', {'component_requests': component_requests})
+
+
+@login_required()
+def repair_req_detail(request, id):
+    component_request = get_object_or_404(models.Component_request, id=id)
+    context = {'component_request':component_request}
+    return render(request, 'component_req_detail.html', context)
+
+
 
 
 

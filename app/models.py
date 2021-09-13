@@ -320,7 +320,10 @@ class Component_request(models.Model):
         return truncatechars(self.Description, 40)
 
     def __str__(self):
-      return str(self.short_description)
+        return str(self.short_description)
+
+    def get_absolute_url(self):
+        return reverse('app:component_req_detail',args=[self.id])
 
 
     class Meta:
