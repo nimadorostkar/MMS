@@ -286,10 +286,12 @@ class Manufacture_request(models.Model):
     def __str__(self):
       return str(self.Mold)
 
+    def get_absolute_url(self):
+        return reverse('app:manufacture_req_detail',args=[self.id])
+
     class Meta:
         verbose_name = "درخواست ساخت قاب"
         verbose_name_plural = "درخواست های ساخت قالب"
-
 
 
 

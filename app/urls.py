@@ -25,6 +25,10 @@ urlpatterns = [
     path('product', views.product, name='product'),
     path('product_detail/<int:id>/',views.product_detail,name='product_detail'),
 
+    # Manufacture Request
+    path('manufacture_req', views.manufacture_req, name='manufacture_req'),
+    path('manufacture_req_detail/<int:id>/',views.manufacture_req_detail,name='manufacture_req_detail'),
+
     # Other
     path('profile', views.profile, name='profile'),
     path('search',views.search,name='search'),
