@@ -92,11 +92,24 @@
 </div>
 
 
+<hr><hr><hr><br>
 
+<div class="row">
+{% for Repair_operation in repair_operation %}
+  {% if Repair_operation.Request == repair_request %}
 
+   <div class="col-md-3">
+     <div class="card card-user">
+       <div class="card-header" align="right"> گام {{ Repair_operation.Step }} </div>
+       <div class="card-body">
+         hh hhhhhhh hhh hhhhh hhh
+       </div>
+     </div>
+   </div>
 
-
-
+  {% endif %}
+{% endfor %}
+</div>
 
 
 

@@ -193,7 +193,8 @@ def repair_req(request):
 def repair_req_detail(request, id):
     repair_request = get_object_or_404(models.Repair_request, id=id)
     repair_img = models.RepairImage.objects.all()
-    context = {'repair_request':repair_request, 'repair_img':repair_img}
+    repair_operation = models.Repair_operation.objects.all()
+    context = {'repair_request':repair_request, 'repair_img':repair_img, 'repair_operation':repair_operation}
     return render(request, 'repair_req_detail.html', context)
 
 
