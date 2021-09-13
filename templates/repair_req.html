@@ -1,0 +1,87 @@
+{% extends "layouts/base.html" %}
+{% block title %} Dashboard {% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-lavender">
+      <div class="card-header">
+        <h3 class="card-title" dir="rtl" align="center"> درخواست های تعمیر قالب  </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card" align="right" dir="rtl">
+      <div class="card-header"> لیست تمامی درخواست ها </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter text-center" id="">
+            <thead class=" text-primary">
+              <tr class="bold">
+                <th>
+                   قالب
+                </th>
+                <th>
+                  درخواست کننده
+                </th>
+                <th>
+                  تاریخ درخواست
+                </th>
+                <th>
+                  وضعیت
+                </th>
+                <th>
+                  درصد پیشرفت
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for Manufacture_request in manufacture_requests %}
+              <tr>
+                <td><a href="{{ Manufacture_request.get_absolute_url }}"> ساخت {{ Manufacture_request.Mold }} </a></td>
+                <td> {{ Manufacture_request.Applicant }} </td>
+                <td> {{ Manufacture_request.StartTime }} </td>
+                <td> {{ Manufacture_request.Status }} </td>
+                <td> <progress value="{{ Manufacture_request.Progress_bar }}" max="100"> </progress> {{ Manufacture_request.Progress_bar }}% </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+{% endblock javascripts %}
