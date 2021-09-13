@@ -29,25 +29,19 @@
             <thead class=" text-primary">
               <tr class="bold">
                 <th>
-                  نام قالب
+                   قالب
                 </th>
                 <th>
-                  کد
+                  درخواست کننده
                 </th>
                 <th>
-                  نوع قالب
+                  تاریخ درخواست
                 </th>
                 <th>
-                  تعداد حفر
+                  وضعیت
                 </th>
                 <th>
-                  سازنده
-                </th>
-                <th>
-                  دسته بندی
-                </th>
-                <th>
-                  تصویر
+                  درصد پیشرفت
                 </th>
               </tr>
             </thead>
@@ -56,11 +50,9 @@
               <tr>
                 <td><a href="{{ Manufacture_request.get_absolute_url }}"> ساخت {{ Manufacture_request.Mold }} </a></td>
                 <td> {{ Manufacture_request.Applicant }} </td>
-                <td> {{ Manufacture_request.Type }} </td>
-                <td> {{ Manufacture_request.Cavities_qty }} </td>
                 <td> {{ Manufacture_request.StartTime }} </td>
                 <td> {{ Manufacture_request.Status }} </td>
-                <td> <div class="photo"> <img src="{{ Manufacture_request.Image.url }}"></div> </td>
+                <td> <progress value="{{ Manufacture_request.Progress_bar }}" max="100"> </progress> {{ Manufacture_request.Progress_bar }}% </td>
               </tr>
             {% endfor %}
             </tbody>
