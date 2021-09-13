@@ -107,7 +107,7 @@ class OperationImageInline(admin.TabularInline):
 
 class Repair_operationAdmin(ImportExportModelAdmin):
     list_display = ('Step','Request','short_description')
-    list_filter = ("Step", "Request")
+    list_filter = ("Step", "Request") 
     search_fields = ['Request','short_description']
     inlines = [ OperationImageInline, ]
 
