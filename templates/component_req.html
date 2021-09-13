@@ -53,7 +53,7 @@
             <tbody>
             {% for Component_request in component_requests %}
               <tr>
-                <td><a href="{{ Component_request.get_absolute_url }}"> تعمیر {{ Component_request.Description|slice:":20" }}... </a></td>
+                <td><a href="{{ Component_request.get_absolute_url }}"> {{ Component_request.Description|slice:":20" }}... </a></td>
                 <td> {{ Component_request.Applicant }} </td>
                 <td> {{ Component_request.StartTime }} </td>
                 <td> {{ Component_request.Status }} </td>

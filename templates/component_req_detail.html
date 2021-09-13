@@ -8,7 +8,120 @@
 {% block content %}
 
 
-  <h1> component_req_detail... </h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-lavender">
+      <div class="card-header">
+        <h3 class="card-title" dir="rtl" align="center"> {{ component_request.Description|slice:":50"  }}... </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="row" align="right" dir="rtl">
+
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter text-center" id="">
+            <thead class="text-primary">
+              <tr class="bold">
+                <th>
+                  درخواست کننده
+                </th>
+                <th>
+                   تاریخ درخواست
+                </th>
+                <th>
+                  تاریخ بررسی
+                </th>
+                <th>
+                   تاریخ اتمام
+                </th>
+                <th>
+                  وضعیت
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {{ component_request.Applicant }} </td>
+                <td> {{ component_request.StartTime }} </td>
+                <td> {{ component_request.CheckTime }} </td>
+                <td> {{ component_request.EndTime }} </td>
+                <td> {{ component_request.Status }} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-header"> <h4> توضیحات </h4> </div>
+        <p class="category"> {{ component_request.Description|linebreaks }} </p>
+        <br>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12" align="left">
+      <div class="card-body">
+        <h4> درصد پیشرفت </h4>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ component_request.Progress_bar }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ component_request.Progress_bar }}%">
+            {{ component_request.Progress_bar }}%
+          </div>
+        </div>
+        <br>
+      </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header" align="right">
+        <h4> تصاویر پروسه ساخت </h4>
+      </div>
+      <div class="card-body">
+
+        <div class="slideshow-container">
+          {% for ComponentImage in component_img %}
+            {% if ComponentImage.property == component_request %}
+              <div class="mySlides mold_slide_fade" align="center">
+                <img src="{{ ComponentImage.Image.url }}" style="width:70%">
+              </div>
+            {% endif %}
+          {% endfor %}
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -18,6 +131,35 @@
 {% block javascripts %}
 
   <script>
+
+
+
+
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+              var i;
+              var slides = document.getElementsByClassName("mySlides");
+              if (n > slides.length) {slideIndex = 1}
+              if (n < 1) {slideIndex = slides.length}
+              for (i = 0; i < slides.length; i++) {
+                  slides[i].style.display = "none";
+              }
+              slides[slideIndex-1].style.display = "block";
+              dots[slideIndex-1].className += " active";
+            }
+
+
+
 
 
     $(document).ready(function() {

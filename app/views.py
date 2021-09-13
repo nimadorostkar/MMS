@@ -220,7 +220,8 @@ def component_req(request):
 @login_required()
 def component_req_detail(request, id):
     component_request = get_object_or_404(models.Component_request, id=id)
-    context = {'component_request':component_request}
+    component_img = models.ComponentImage.objects.all()
+    context = {'component_request':component_request, 'component_img':component_img}
     return render(request, 'component_req_detail.html', context)
 
 
