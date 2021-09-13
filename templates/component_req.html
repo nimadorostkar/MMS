@@ -8,7 +8,73 @@
 {% block content %}
 
 
-  <h1> component_req... </h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-lavender">
+      <div class="card-header">
+        <h3 class="card-title" dir="rtl" align="center"> درخواست های ساخت </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card" align="right" dir="rtl">
+      <div class="card-header"> لیست تمامی درخواست ها </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter text-center" id="">
+            <thead class=" text-primary">
+              <tr class="bold">
+                <th>
+                   درخواست
+                </th>
+                <th>
+                  درخواست کننده
+                </th>
+                <th>
+                  تاریخ درخواست
+                </th>
+                <th>
+                  وضعیت
+                </th>
+                <th>
+                  درصد پیشرفت
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for Component_request in component_requests %}
+              <tr>
+                <td><a href="{{ Component_request.get_absolute_url }}"> تعمیر {{ Component_request.Description|slice:":20" }}... </a></td>
+                <td> {{ Component_request.Applicant }} </td>
+                <td> {{ Component_request.StartTime }} </td>
+                <td> {{ Component_request.Status }} </td>
+                <td> <progress value="{{ Component_request.Progress_bar }}" max="100"> </progress> {{ Component_request.Progress_bar }}%  </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
 
 

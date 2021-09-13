@@ -218,7 +218,7 @@ def component_req(request):
 
 
 @login_required()
-def repair_req_detail(request, id):
+def component_req_detail(request, id):
     component_request = get_object_or_404(models.Component_request, id=id)
     context = {'component_request':component_request}
     return render(request, 'component_req_detail.html', context)
