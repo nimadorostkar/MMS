@@ -78,8 +78,8 @@
         <div class="slideshow-container">
           {% for RepairImage in repair_img %}
             {% if RepairImage.property == repair_request %}
-              <div class="mySlides mold_slide_fade">
-                <img src="{{ RepairImage.Image.url }}" style="width:100%">
+              <div class="mySlides mold_slide_fade" align="center">
+                <img src="{{ RepairImage.Image.url }}" style="width:70%">
               </div>
             {% endif %}
           {% endfor %}
@@ -98,14 +98,31 @@
 {% for Repair_operation in repair_operation %}
   {% if Repair_operation.Request == repair_request %}
 
-   <div class="col-md-3">
+   <div class="col-md-3" align="right" dir="rtl">
      <div class="card card-user">
-       <div class="card-header" align="right"> گام {{ Repair_operation.Step }} </div>
+       <div class="card-header"> <h4> گام {{ Repair_operation.Step }} </h4> </div>
        <div class="card-body">
-         hh hhhhhhh hhh hhhhh hhh
+         <p> {{ Repair_operation.Description|slice:":150" }}... </p>
+         <br>
+         <div align="center">
+         {% for OperationImage in operation_img %}
+          {% if OperationImage.property == Repair_operation %}
+            <img class="operation-steps" src="{{ OperationImage.Image.url }}" >
+          {% endif %}
+         {% endfor %}
+         <hr>
+         <a href="{{ Repair_operation.get_absolute_url }}"> <p> مشاهده جزئیات </p> </a>
+         </div>
+
        </div>
      </div>
    </div>
+
+
+
+
+
+
 
   {% endif %}
 {% endfor %}

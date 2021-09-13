@@ -20425,6 +20425,12 @@ Copyright (c) 2015 Daniel Eden
   position: relative;
 }
 
+.card-user .operation-steps {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #2b3553;
+}
+
 .card-user .card-body {
   min-height: 240px;
 }

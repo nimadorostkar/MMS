@@ -194,9 +194,15 @@ def repair_req_detail(request, id):
     repair_request = get_object_or_404(models.Repair_request, id=id)
     repair_img = models.RepairImage.objects.all()
     repair_operation = models.Repair_operation.objects.all()
-    context = {'repair_request':repair_request, 'repair_img':repair_img, 'repair_operation':repair_operation}
+    operation_img = models.OperationImage.objects.all()
+    context = {'repair_request':repair_request, 'repair_img':repair_img, 'repair_operation':repair_operation, 'operation_img':operation_img}
     return render(request, 'repair_req_detail.html', context)
 
+@login_required()
+def repair_operation_detail(request, id):
+    operation_detail = get_object_or_404(models.Repair_operation, id=id)
+    context = {'operation_detail':operation_detail}
+    return render(request, 'repair_operation_detail.html', context)
 
 
 

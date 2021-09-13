@@ -32,6 +32,7 @@ urlpatterns = [
     # Repair request
     path('repair_req', views.repair_req, name='repair_req'),
     path('repair_req_detail/<int:id>/',views.repair_req_detail,name='repair_req_detail'),
+    path('repair_operation_detail/<int:id>/',views.repair_operation_detail,name='repair_operation_detail'),
 
     # Other
     path('profile', views.profile, name='profile'),

@@ -250,6 +250,9 @@ class Repair_operation(models.Model):
     def __str__(self):
       return "گام : " + str(self.Step) + " درخواست تعمیر : " + str(self.Request)
 
+    def get_absolute_url(self):
+        return reverse('app:repair_operation_detail',args=[self.id])
+
     @property
     def short_description(self):
         return truncatechars(self.Description, 60)
