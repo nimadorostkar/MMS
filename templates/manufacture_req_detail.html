@@ -1,0 +1,183 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-lavender">
+      <div class="card-header">
+        <h2 class="card-title" dir="rtl" align="center"> {{ mold.Name }} </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-body">
+        <p class="card-text">
+          <div class="author">
+            <div class="block block-one"></div>
+            <div class="block block-two"></div>
+            <div class="block block-three"></div>
+            <div class="block block-four"></div>
+          </div>
+        </p>
+
+        <div class="slideshow-container">
+          {% for MoldImage in mold_img %}
+            {% if MoldImage.property == mold %}
+              <div class="mySlides mold_slide_fade">
+                <img src="{{ MoldImage.Image.url }}" style="width:100%">
+              </div>
+            {% endif %}
+          {% endfor %}
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <br><br>
+
+        <div align="right" dir="rtl" class="card-description">
+          <p class="category"> {{ mold.Description|linebreaks }} </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row" dir="rtl" align="right">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h6 class="card-title" style="color:#8d39e4ad;"> اطلاعات کلی </h6>
+      </div>
+      <div class="card-body">
+        <table class="table tablesorter text-center" id="">
+          <thead class=" text-primary">
+            <tr class="bold">
+              <th> کد </th>
+              <th> سازنده   </th>
+              <th> سال ساخت </th>
+              <th> آدرس </th>
+              <th> فایل </th>
+              <th> دسته بندی </th>
+              <th> محصولات مرتبط   </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> {{ mold.Code }} </td>
+              <td> {{ mold.Manufacturer }} </td>
+              <td> {{ mold.Year }} </td>
+              <td> {{ mold.Address }} </td>
+              <td>  <a href="{{ mold.Address.url }}" download> دانلود </a> </td>
+              <td> {{ mold.Category }} </td>
+              <td> {% for Related_product in mold.Related_product.all %}{{ Related_product }}<br>{% endfor %} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h6 class="card-title" style="color:#8d39e4ad;"> اطلاعات فنی </h6>
+      </div>
+      <div class="card-body">
+        <table class="table tablesorter text-center" id="">
+          <thead class=" text-primary">
+            <tr class="bold">
+              <th> نوع قالب </th>
+              <th> شناسه قطعه </th>
+              <th> تعداد حفره </th>
+              <th> شناسه حفره </th>
+              <th> تعداد حفره های سالم </th>
+              <th> تعداد قالب </th>
+              <th> متریال طراحی </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> {{ mold.Type }} </td>
+              <td> {{ mold.Piece_id }} </td>
+              <td> {{ mold.Cavities_qty }} </td>
+              <td> {{ mold.Cavities_id }} </td>
+              <td> {{ mold.Healthy_Cavities_qty }} </td>
+              <td> {{ mold.Mold_qty }} </td>
+              <td> <a href="{{ mold.get_absolute_url }}"> {{ mold.Material }} </a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+
+
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+    }
+
+
+
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+
+{% endblock javascripts %}
