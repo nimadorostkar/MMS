@@ -201,7 +201,8 @@ def repair_req_detail(request, id):
 @login_required()
 def repair_operation_detail(request, id):
     operation_detail = get_object_or_404(models.Repair_operation, id=id)
-    context = {'operation_detail':operation_detail}
+    operation_img = models.OperationImage.objects.all()
+    context = {'operation_detail':operation_detail, 'operation_img':operation_img}
     return render(request, 'repair_operation_detail.html', context)
 
 
