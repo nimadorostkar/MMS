@@ -7,7 +7,7 @@ app_name='app'
 
 urlpatterns = [
     # The home page
-    path('', views.index, name='index'),
+    path('', views.mold, name='mold'),
 
     # Molds
     path('mold', views.mold, name='mold'),
@@ -28,6 +28,10 @@ urlpatterns = [
     # Manufacture Request
     path('manufacture_req', views.manufacture_req, name='manufacture_req'),
     path('manufacture_req_detail/<int:id>/',views.manufacture_req_detail,name='manufacture_req_detail'),
+
+    # Repair request
+    path('repair_req', views.repair_req, name='repair_req'),
+    path('repair_req_detail/<int:id>/',views.repair_req_detail,name='repair_req_detail'),
 
     # Other
     path('profile', views.profile, name='profile'),

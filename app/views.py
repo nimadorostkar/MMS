@@ -164,7 +164,6 @@ def product_detail(request, id):
 
 
 
-
 #------------------------------------------------------------------------------
 @login_required()
 def manufacture_req(request):
@@ -175,10 +174,26 @@ def manufacture_req(request):
 @login_required()
 def manufacture_req_detail(request, id):
     manufacture_request = get_object_or_404(models.Manufacture_request, id=id)
-    molds = models.Mold.objects.all()
-    molds_img = models.MoldImage.objects.all()
-    context = {'manufacture_request':manufacture_request, 'molds':molds, 'molds_img':molds_img}
+    context = {'manufacture_request':manufacture_request}
     return render(request, 'manufacture_req_detail.html', context)
+
+
+
+
+
+#------------------------------------------------------------------------------
+@login_required()
+def repair_req(request):
+    repair_requests = models.Repair_request.objects.all()
+    return render(request, 'repair_req.html', {'manufacture_requests': manufacture_requests})
+
+
+@login_required()
+def repair_req_detail(request, id):
+    repair_request = get_object_or_404(models.Repair_request, id=id)
+    context = {'manufacture_request':manufacture_requestg}
+    return render(request, 'repair_req_detail.html', context)
+
 
 
 

@@ -219,6 +219,9 @@ class Repair_request(models.Model):
     def __str__(self):
       return str(self.Mold)
 
+    def get_absolute_url(self):
+        return reverse('app:repair_req_detail',args=[self.id])
+
     class Meta:
         verbose_name = "درخواست تعمیر"
         verbose_name_plural = "درخواست تعمیرات"
