@@ -145,7 +145,6 @@ def manufacturer_detail(request, id):
 
 
 
-
 #------------------------------------------------------------------------------
 @login_required()
 def product(request):
@@ -161,6 +160,25 @@ def product_detail(request, id):
     context = {'product':product, 'molds':molds, 'molds_img':molds_img}
     return render(request, 'product_detail.html', context)
 
+
+
+
+
+
+#------------------------------------------------------------------------------
+@login_required()
+def manufacture_req(request):
+    manufacture_requests = models.Manufacture_request.objects.all()
+    return render(request, 'manufacture_req.html', {'manufacture_requests': manufacture_requests})
+
+
+@login_required()
+def manufacture_req_detail(request, id):
+    manufacture_request = get_object_or_404(models.Manufacture_request, id=id)
+    molds = models.Mold.objects.all()
+    molds_img = models.MoldImage.objects.all()
+    context = {'manufacture_request':manufacture_request, 'molds':molds, 'molds_img':molds_img}
+    return render(request, 'manufacture_req_detail.html', context)
 
 
 
