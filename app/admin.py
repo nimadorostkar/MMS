@@ -5,13 +5,13 @@ from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, P
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from mptt.admin import MPTTModelAdmin, TreeRelatedFieldListFilter, DraggableMPTTAdmin
+from jalali_date import datetime2jalali, date2jalali
+from jalali_date.admin import ModelAdminJalaliMixin, StackedInlineJalaliMixin, TabularInlineJalaliMixin
 
 
 admin.site.site_header= " توانکار "
 admin.site.site_title= "Tavankar"
 admin.site.register(LogEntry)
-
-
 
 
 
@@ -107,7 +107,7 @@ class OperationImageInline(admin.TabularInline):
 
 class Repair_operationAdmin(ImportExportModelAdmin):
     list_display = ('Step','Request','short_description')
-    list_filter = ("Step", "Request") 
+    list_filter = ("Step", "Request")
     search_fields = ['Request','short_description']
     inlines = [ OperationImageInline, ]
 
@@ -123,7 +123,7 @@ class RepairImageInline(admin.TabularInline):
     model = RepairImage
     extra = 1
 
-class Repair_requestAdmin(ImportExportModelAdmin):
+class Repair_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
     list_display = ('Mold','Applicant')
     list_filter = ("Mold", "Applicant")
     search_fields = ['Mold', 'Applicant']
@@ -137,8 +137,9 @@ admin.site.register(models.Repair_request, Repair_requestAdmin)
 
 
 #------------------------------------------------------------------------------
-class Manufacture_requestAdmin(ImportExportModelAdmin):
+class Manufacture_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
     list_display = ('Mold','Status')
+
 admin.site.register(models.Manufacture_request, Manufacture_requestAdmin)
 
 
@@ -150,7 +151,7 @@ class ComponentImageImageInline(admin.TabularInline):
     model = ComponentImage
     extra = 1
 
-class Component_requestAdmin(ImportExportModelAdmin):
+class Component_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
     list_display = ('short_description','Applicant','Status')
     inlines = [ ComponentImageImageInline, ]
 

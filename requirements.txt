@@ -14,3 +14,4 @@ django-allauth
 django-bootstrap-form
 django-import-export
 django-mptt
+django-jalali-date
