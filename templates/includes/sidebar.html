@@ -22,24 +22,17 @@
             </a>
           </li>
 
-          <li class="{% if 'app:product' in segment %} active {% endif %}">
-            <a href="{% url 'app:product' %}">
-              <i class="tim-icons icon-app"></i>
-              <p> محصولات  </p>
-            </a>
-          </li>
-
           <li class="{% if 'app:manufacture_req' in segment %} active {% endif %}">
             <a href="{% url 'app:manufacture_req' %}">
               <i class="tim-icons icon-notes"></i>
-              <p> درخواست ساخت </p>
+              <p>درخواست ساخت قالب</p>
             </a>
           </li>
 
           <li class="{% if 'app:repair_req' in segment %} active {% endif %}">
             <a href="{% url 'app:repair_req' %}">
               <i class="tim-icons icon-settings"></i>
-              <p> درخواست تعمیر  </p>
+              <p> درخواست تعمیر قالب </p>
             </a>
           </li>
 
@@ -50,6 +43,13 @@
             </a>
           </li>
 
+          <li class="{% if 'app:manufacturer' in segment %} active {% endif %}">
+            <a href="{% url 'app:manufacturer' %}">
+              <i class="tim-icons icon-single-02"></i>
+              <p> سازنده ها </p>
+            </a>
+          </li>
+
           <li class="{% if 'app:category' in segment %} active {% endif %}">
             <a href="{% url 'app:category' %}">
               <i class="tim-icons icon-align-center"></i>
@@ -57,10 +57,10 @@
             </a>
           </li>
 
-          <li class="{% if 'app:manufacturer' in segment %} active {% endif %}">
-            <a href="{% url 'app:manufacturer' %}">
-              <i class="tim-icons icon-single-02"></i>
-              <p> سازنده ها </p>
+          <li class="{% if 'app:product' in segment %} active {% endif %}">
+            <a href="{% url 'app:product' %}">
+              <i class="tim-icons icon-app"></i>
+              <p> محصولات  </p>
             </a>
           </li>
 
@@ -71,7 +71,6 @@
               <p> پروفایل </p>
             </a>
           </li>
-
 
 
           <li>
