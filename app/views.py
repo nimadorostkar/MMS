@@ -77,7 +77,6 @@ def search(request):
 
 
 
-
 #------------------------------------------------------------------------------
 @login_required()
 def mold(request):
@@ -115,7 +114,6 @@ def category_detail(request, id):
 
 
 
-
 #------------------------------------------------------------------------------
 @login_required()
 def manufacturer(request):
@@ -135,8 +133,6 @@ def manufacturer_detail(request, id):
 
 
 
-
-
 #------------------------------------------------------------------------------
 @login_required()
 def product(request):
@@ -151,7 +147,6 @@ def product_detail(request, id):
     molds_img = models.MoldImage.objects.all()
     context = {'product':product, 'molds':molds, 'molds_img':molds_img}
     return render(request, 'product_detail.html', context)
-
 
 
 
@@ -216,7 +211,6 @@ def repair_operation_detail(request, id):
 
 
 
-
 #------------------------------------------------------------------------------
 @login_required()
 def component_req(request):
@@ -237,7 +231,6 @@ def component_req_detail(request, id):
     component_img = models.ComponentImage.objects.all()
     context = {'component_request':component_request, 'component_img':component_img}
     return render(request, 'component_req_detail.html', context)
-
 
 
 
