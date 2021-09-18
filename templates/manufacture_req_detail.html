@@ -41,6 +41,9 @@
                   تاریخ بررسی
                 </th>
                 <th>
+                   تاریخ تست
+                </th>
+                <th>
                    تاریخ اتمام
                 </th>
                 <th>
@@ -53,6 +56,7 @@
                 <td> {{ manufacture_request.Applicant }} </td>
                 <td> {{ manufacture_request.StartTime|default:'نامشخص' }} </td>
                 <td> {{ manufacture_request.CheckTime|default:'نامشخص' }} </td>
+                <td> {{ repair_request.TestTime|default:'نامشخص' }} </td>
                 <td> {{ manufacture_request.EndTime|default:'نامشخص' }} </td>
                 <td> {{ manufacture_request.Status }} </td>
               </tr>

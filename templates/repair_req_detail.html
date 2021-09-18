@@ -39,6 +39,9 @@
                   تاریخ بررسی
                 </th>
                 <th>
+                   تاریخ تست
+                </th>
+                <th>
                    تاریخ اتمام
                 </th>
                 <th>
@@ -51,6 +54,7 @@
                 <td> {{ repair_request.Applicant }} </td>
                 <td> {{ repair_request.StartTime|default:'نامشخص' }} </td>
                 <td> {{ repair_request.CheckTime|default:'نامشخص' }} </td>
+                <td> {{ repair_request.TestTime|default:'نامشخص' }} </td>
                 <td> {{ repair_request.EndTime|default:'نامشخص' }} </td>
                 <td> {{ repair_request.Status }} </td>
               </tr>
