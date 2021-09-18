@@ -18,17 +18,6 @@ import datetime
 
 
 #------------------------------------------------------------------------------
-@login_required()
-def index(request):
-    s = "ssss"
-    context = {'s':s}
-    return render(request, 'index.html', context)
-
-
-
-
-
-#------------------------------------------------------------------------------
 @login_required
 def profile(request):
   profile = models.Profile.objects.filter(user=request.user)
@@ -70,10 +59,14 @@ def search(request):
     if request.method=="POST":
         search = request.POST['q']
         if search:
-            material = models.Material.objects.filter(Q(name__icontains=search) | Q(description__icontains=search))
-            product = models.Product.objects.filter(Q(name__icontains=search))
-            station = models.Station.objects.filter(Q(name__icontains=search) | Q(description__icontains=search))
-            match = chain(material, product, station)
+            mold = models.Mold.objects.filter(Q(Name__icontains=search) | Q(Description__icontains=search))
+            product = models.Product.objects.filter(Q(Name__icontains=search))
+            manufacturer = models.Manufacturer.objects.filter(Q(Name__icontains=search) | Q(Description__icontains=search))
+            repair_req = models.Repair_request.objects.filter(Q(Mold__icontains=search) | Q(Description__icontains=search))
+            repair_oper = models.Repair_operation.objects.filter(Q(Request__icontains=search) | Q(Description__icontains=search))
+            manufacture_req = models.Manufacture_request.objects.filter(Q(Mold__icontains=search) | Q(Description__icontains=search))
+            component_req = models.Component_request.objects.filter(Q(Description__icontains=search))
+            match = chain(mold, product, manufacturer, repair_req, repair_oper, manufacture_req, component_req)
             if match:
                 return render(request,'search.html', {'sr': match})
             else:

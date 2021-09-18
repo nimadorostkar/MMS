@@ -40,5 +40,5 @@ urlpatterns = [
 
     # Other
     path('profile', views.profile, name='profile'),
-    path('search',views.search,name='search'),
+    path('search',views.search,name='search'), 
     ]

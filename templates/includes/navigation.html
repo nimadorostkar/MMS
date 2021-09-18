@@ -33,7 +33,7 @@
                 </button>
               </li>
 
-            
+
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
@@ -67,10 +67,10 @@
             <div class="modal-header">
               <form action="{% url 'app:search' %}" method="post">
                 {% csrf_token %}
-              <input name="q" type="search" class="form-control" id="inlineFormInputGroup" placeholder="جستجو...">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="tim-icons icon-simple-remove"></i>
-              </button>
+                  <input name="q" type="search" class="form-control" id="inlineFormInputGroup" placeholder="جستجو...">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
               </form>
             </div>
           </div>
