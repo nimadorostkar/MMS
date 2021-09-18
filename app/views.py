@@ -159,8 +159,15 @@ def product_detail(request, id):
 #------------------------------------------------------------------------------
 @login_required()
 def manufacture_req(request):
+    reject_req = models.Manufacture_request.objects.filter(Status='رد شده').count()
+    total_req = models.Manufacture_request.objects.all().count()
+    done_req = models.Manufacture_request.objects.filter(Status='به اتمام رسیده').count()
     manufacture_requests = models.Manufacture_request.objects.all().order_by("-StartTime")
-    return render(request, 'manufacture_req.html', {'manufacture_requests': manufacture_requests})
+    return render(request, 'manufacture_req.html', {'manufacture_requests': manufacture_requests,
+    'reject_req':reject_req,
+    'total_req':total_req,
+    'done_req':done_req
+    })
 
 
 @login_required()
@@ -176,9 +183,17 @@ def manufacture_req_detail(request, id):
 #------------------------------------------------------------------------------
 @login_required()
 def repair_req(request):
+    reject_req = models.Repair_request.objects.filter(Status='رد شده').count()
+    total_req = models.Repair_request.objects.all().count()
+    done_req = models.Repair_request.objects.filter(Status='به اتمام رسیده').count()
     repair_requests = models.Repair_request.objects.all().order_by("-StartTime")
     repair_img = models.RepairImage.objects.all()
-    return render(request, 'repair_req.html', {'repair_requests': repair_requests, "repair_img":repair_img})
+    return render(request, 'repair_req.html', {'repair_requests': repair_requests,
+    "repair_img":repair_img,
+    'reject_req':reject_req,
+    'total_req':total_req,
+    'done_req':done_req
+    })
 
 
 @login_required()
@@ -205,8 +220,15 @@ def repair_operation_detail(request, id):
 #------------------------------------------------------------------------------
 @login_required()
 def component_req(request):
+    reject_req = models.Component_request.objects.filter(Status='رد شده').count()
+    total_req = models.Component_request.objects.all().count()
+    done_req = models.Component_request.objects.filter(Status='به اتمام رسیده').count()
     component_requests = models.Component_request.objects.all().order_by("-StartTime")
-    return render(request, 'component_req.html', {'component_requests': component_requests})
+    return render(request, 'component_req.html', {'component_requests': component_requests,
+    'reject_req':reject_req,
+    'total_req':total_req,
+    'done_req':done_req
+    })
 
 
 @login_required()
