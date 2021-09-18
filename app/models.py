@@ -7,7 +7,6 @@ from django.db.models.signals import post_save
 from django.template.defaultfilters import truncatechars
 from mptt.models import MPTTModel, TreeForeignKey
 from django.core.validators import MaxValueValidator, MinValueValidator
-from extensions.utils import jalali_converter
 
 
 
@@ -328,8 +327,6 @@ class Component_request(models.Model):
     def get_absolute_url(self):
         return reverse('app:component_req_detail',args=[self.id])
 
-    def j_StartTime(self):
-        return jalali_converter(self.StartTime)
 
 
     class Meta:
