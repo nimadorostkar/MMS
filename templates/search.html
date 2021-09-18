@@ -21,9 +21,6 @@
 {% if sr %}
 
 
-   <a href="{{ Station.get_absolute_url}}">  {{ Station.name }} </a> <br>
-
-
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <div class="card">
@@ -38,13 +35,68 @@
             <table class="table">
               <tbody>
 
-                {% for Station in sr %}
+                {% for Mold in sr %}
                 <tr>
                   <td>
-                    <p class="title"> <a href="{{ Station.get_absolute_url }}"> {{ Station.name }} </a>  </p>
+                    <p class="title"> <a href="{{ Mold.get_absolute_url }}"> {{ Mold.Name }} </a>  </p>
                   </td>
                   <td>
-                    <p class="text-muted"> {{ Station.description|slice:":120" }}... </p>
+                    <p class="text-muted"> {{ Mold.Description|slice:":120" }}... </p>
+                  </td>
+                </tr>
+                {% endfor %}
+
+                {% for Product in sr %}
+                <tr>
+                  <td>
+                    <p class="title"> <a href="{{ Product.get_absolute_url }}"> {{ Product.Name }} </a>  </p>
+                  </td>
+                  <td>
+                    <p class="text-muted"> {{ Product.Description|slice:":120" }}... </p>
+                  </td>
+                </tr>
+                {% endfor %}
+
+                {% for Manufacturer in sr %}
+                <tr>
+                  <td>
+                    <p class="title"> <a href="{{ Manufacturer.get_absolute_url }}"> {{ Manufacturer.Name }} </a>  </p>
+                  </td>
+                  <td>
+                    <p class="text-muted"> {{ Manufacturer.Description|slice:":120" }}... </p>
+                  </td>
+                </tr>
+                {% endfor %}
+
+                {% for Repair_request in sr %}
+                <tr>
+                  <td>
+                    <p class="title"> <a href="{{ Repair_request.get_absolute_url }}"> تعمیر {{ Repair_request }} </a>  </p>
+                  </td>
+                  <td>
+                    <p class="text-muted"> {{ Repair_request.Description|slice:":120" }}... </p>
+                  </td>
+                </tr>
+                {% endfor %}
+
+                {% for Manufacture_request in sr %}
+                <tr>
+                  <td>
+                    <p class="title"> <a href="{{ Manufacture_request.get_absolute_url }}"> ساخت {{ Manufacture_request }} </a>  </p>
+                  </td>
+                  <td>
+                    <p class="text-muted"> {{ Manufacture_request.Description|slice:":120" }}... </p>
+                  </td>
+                </tr>
+                {% endfor %}
+
+                {% for Component_request in sr %}
+                <tr>
+                  <td>
+                    <p class="title"> <a href="{{ Component_request.get_absolute_url }}"> ساخت {{ Component_request }} </a>  </p>
+                  </td>
+                  <td>
+                    <p class="text-muted"> {{ Component_request.Description|slice:":120" }}... </p>
                   </td>
                 </tr>
                 {% endfor %}

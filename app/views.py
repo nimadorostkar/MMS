@@ -62,11 +62,10 @@ def search(request):
             mold = models.Mold.objects.filter(Q(Name__icontains=search) | Q(Description__icontains=search))
             product = models.Product.objects.filter(Q(Name__icontains=search))
             manufacturer = models.Manufacturer.objects.filter(Q(Name__icontains=search) | Q(Description__icontains=search))
-            repair_req = models.Repair_request.objects.filter(Q(Mold__icontains=search) | Q(Description__icontains=search))
-            repair_oper = models.Repair_operation.objects.filter(Q(Request__icontains=search) | Q(Description__icontains=search))
-            manufacture_req = models.Manufacture_request.objects.filter(Q(Mold__icontains=search) | Q(Description__icontains=search))
+            repair_req = models.Repair_request.objects.filter(Q(Mold__Name__icontains=search) | Q(Description__icontains=search))
+            manufacture_req = models.Manufacture_request.objects.filter(Q(Mold__Name__icontains=search) | Q(Description__icontains=search))
             component_req = models.Component_request.objects.filter(Q(Description__icontains=search))
-            match = chain(mold, product, manufacturer, repair_req, repair_oper, manufacture_req, component_req)
+            match = chain(mold, product, manufacturer, repair_req, manufacture_req, component_req)
             if match:
                 return render(request,'search.html', {'sr': match})
             else:
