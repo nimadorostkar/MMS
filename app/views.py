@@ -159,7 +159,7 @@ def product_detail(request, id):
 #------------------------------------------------------------------------------
 @login_required()
 def manufacture_req(request):
-    manufacture_requests = models.Manufacture_request.objects.all()
+    manufacture_requests = models.Manufacture_request.objects.all().order_by("-StartTime")
     return render(request, 'manufacture_req.html', {'manufacture_requests': manufacture_requests})
 
 
@@ -176,7 +176,7 @@ def manufacture_req_detail(request, id):
 #------------------------------------------------------------------------------
 @login_required()
 def repair_req(request):
-    repair_requests = models.Repair_request.objects.all()
+    repair_requests = models.Repair_request.objects.all().order_by("-StartTime")
     repair_img = models.RepairImage.objects.all()
     return render(request, 'repair_req.html', {'repair_requests': repair_requests, "repair_img":repair_img})
 
@@ -205,7 +205,7 @@ def repair_operation_detail(request, id):
 #------------------------------------------------------------------------------
 @login_required()
 def component_req(request):
-    component_requests = models.Component_request.objects.all()
+    component_requests = models.Component_request.objects.all().order_by("-StartTime")
     return render(request, 'component_req.html', {'component_requests': component_requests})
 
 
