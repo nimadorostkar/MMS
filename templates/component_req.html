@@ -61,7 +61,7 @@
              {% endif %}
                 <td><a href="{{ Component_request.get_absolute_url }}"> {{ Component_request.Description|slice:":20" }}... </a></td>
                 <td> {{ Component_request.Applicant }} </td>
-                <td> {{ Component_request.StartTime|to_jalali:'%y/%m/%d' }} </td>
+                <td> {{ Component_request.StartTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ Component_request.Status }} </td>
                 <td> <progress value="{{ Component_request.Progress_bar }}" max="100"> </progress> {{ Component_request.Progress_bar }}%  </td>
               </tr>

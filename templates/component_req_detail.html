@@ -6,7 +6,7 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-
+{% load jalali_tags %}
 
 
 <div class="row">
@@ -56,10 +56,10 @@
             <tbody>
               <tr>
                 <td> {{ component_request.Applicant }} </td>
-                <td> {{ component_request.StartTime|default:'نامشخص' }} </td>
-                <td> {{ component_request.CheckTime|default:'نامشخص' }} </td>
-                <td> {{ repair_request.TestTime|default:'نامشخص' }} </td>
-                <td> {{ component_request.EndTime|default:'نامشخص' }} </td>
+                <td> {{ component_request.StartTime|to_jalali:'%Y/%m/%d'  }} </td>
+                <td> {{ component_request.CheckTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ repair_request.TestTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ component_request.EndTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ component_request.Status }} </td>
               </tr>
             </tbody>
