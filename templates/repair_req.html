@@ -47,7 +47,13 @@
             </thead>
             <tbody>
             {% for Repair_request in repair_requests %}
-              <tr>
+              {% if Repair_request.Status == 'به اتمام رسیده'  %}
+               <tr style="background-color:#0eef0e33;">
+              {% elif Repair_request.Status == 'رد شده' %}
+               <tr style="background-color:#ff00002e;">
+              {% else %}
+               <tr>
+              {% endif %}
                 <td><a href="{{ Repair_request.get_absolute_url }}"> تعمیر {{ Repair_request.Mold }} </a></td>
                 <td> {{ Repair_request.Applicant }} </td>
                 <td> {{ Repair_request.StartTime|default:'نامشخص' }} </td>

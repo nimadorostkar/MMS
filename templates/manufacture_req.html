@@ -47,7 +47,13 @@
             </thead>
             <tbody>
             {% for Manufacture_request in manufacture_requests %}
-              <tr>
+              {% if Manufacture_request.Status == 'به اتمام رسیده'  %}
+               <tr style="background-color:#0eef0e33;">
+              {% elif Manufacture_request.Status == 'رد شده' %}
+               <tr style="background-color:#ff00002e;">
+              {% else %}
+               <tr>
+              {% endif %}
                 <td><a href="{{ Manufacture_request.get_absolute_url }}"> ساخت {{ Manufacture_request.Mold }} </a></td>
                 <td> {{ Manufacture_request.Applicant }} </td>
                 <td> {{ Manufacture_request.StartTime|default:'نامشخص' }} </td>
