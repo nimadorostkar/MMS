@@ -51,9 +51,9 @@
             <tbody>
               <tr>
                 <td> {{ manufacture_request.Applicant }} </td>
-                <td> {{ manufacture_request.StartTime }} </td>
-                <td> {{ manufacture_request.CheckTime }} </td>
-                <td> {{ manufacture_request.EndTime }} </td>
+                <td> {{ manufacture_request.StartTime|default:'نامشخص' }} </td>
+                <td> {{ manufacture_request.CheckTime|default:'نامشخص' }} </td>
+                <td> {{ manufacture_request.EndTime|default:'نامشخص' }} </td>
                 <td> {{ manufacture_request.Status }} </td>
               </tr>
             </tbody>

@@ -49,9 +49,9 @@
             <tbody>
               <tr>
                 <td> {{ repair_request.Applicant }} </td>
-                <td> {{ repair_request.StartTime }} </td>
-                <td> {{ repair_request.CheckTime }} </td>
-                <td> {{ repair_request.EndTime }} </td>
+                <td> {{ repair_request.StartTime|default:'نامشخص' }} </td>
+                <td> {{ repair_request.CheckTime|default:'نامشخص' }} </td>
+                <td> {{ repair_request.EndTime|default:'نامشخص' }} </td>
                 <td> {{ repair_request.Status }} </td>
               </tr>
             </tbody>

@@ -50,7 +50,7 @@
               <tr>
                 <td><a href="{{ Manufacture_request.get_absolute_url }}"> ساخت {{ Manufacture_request.Mold }} </a></td>
                 <td> {{ Manufacture_request.Applicant }} </td>
-                <td> {{ Manufacture_request.StartTime }} </td>
+                <td> {{ Manufacture_request.StartTime|default:'نامشخص' }} </td>
                 <td> {{ Manufacture_request.Status }} </td>
                 <td> <progress value="{{ Manufacture_request.Progress_bar }}" max="100"> </progress> {{ Manufacture_request.Progress_bar }}% </td>
               </tr>

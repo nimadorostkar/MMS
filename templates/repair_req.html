@@ -50,7 +50,7 @@
               <tr>
                 <td><a href="{{ Repair_request.get_absolute_url }}"> تعمیر {{ Repair_request.Mold }} </a></td>
                 <td> {{ Repair_request.Applicant }} </td>
-                <td> {{ Repair_request.StartTime }} </td>
+                <td> {{ Repair_request.StartTime|default:'نامشخص' }} </td>
                 <td> {{ Repair_request.Status }} </td>
                 <td>
                   <div class="photo">
