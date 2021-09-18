@@ -52,7 +52,13 @@
             </thead>
             <tbody>
             {% for Component_request in component_requests %}
+             {% if Component_request.Status == 'به اتمام رسیده'  %}
+              <tr style="background-color:#0eef0e33;">
+             {% elif Component_request.Status == 'رد شده' %}
+              <tr style="background-color:#ff00002e;">
+             {% else %}
               <tr>
+             {% endif %}
                 <td><a href="{{ Component_request.get_absolute_url }}"> {{ Component_request.Description|slice:":20" }}... </a></td>
                 <td> {{ Component_request.Applicant }} </td>
                 <td> {{ Component_request.StartTime|default:'نامشخص' }} </td>
