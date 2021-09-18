@@ -32,26 +32,8 @@
                   <span class="d-lg-none d-md-block">SEARCH</span>
                 </button>
               </li>
-              <li class="dropdown nav-item">
-                <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <div class="notification d-none d-lg-block d-xl-block"></div>
-                  <i class="tim-icons icon-sound-wave"></i>
-                  <p class="d-lg-none">
-                    Notifications
-                  </p>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-                  {% for Material in n_material %}
-                    {% if Material.inventory <= Material.min_inventory %}
-                      <li class="nav-link">
-                         <a href="{{ Material.get_absolute_url }}" class="nav-item dropdown-item">
-                           موجودی {{ Material.name }} از حداقل کمتر است
-                         </a>
-                      </li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-              </li>
+
+            
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
