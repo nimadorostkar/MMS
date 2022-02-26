@@ -52,6 +52,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 DEFAULT_AUTO_FIELD='django.db.models.BigAutoField'
 
+
 ROOT_URLCONF = 'core.urls'
 #LOGIN_REDIRECT_URL = "home"   # Route defined in app/urls.py
 #LOGOUT_REDIRECT_URL = "home"  # Route defined in app/urls.py
@@ -184,6 +185,7 @@ ACCOUNT_FORMS = {
     'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
 }
 
+
 ACCOUNT_AUTHENTICATION_METHOD = ("username")
 ACCOUNT_EMAIL_VERIFICATION = ("none")
 #ACCOUNT_EMAIL_VERIFICATION = ('mandatory')
@@ -222,6 +224,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
 
 
 
