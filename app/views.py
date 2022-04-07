@@ -17,6 +17,8 @@ import datetime
 
 
 
+
+
 #------------------------------------------------------------------------------
 @login_required
 def profile(request):
@@ -85,6 +87,8 @@ def mold(request):
     return render(request, 'mold.html', {'molds': molds, 'molds_img':molds_img})
 
 
+  
+  
 @login_required()
 def mold_detail(request, id):
     mold = get_object_or_404(models.Mold, id=id)
@@ -114,6 +118,7 @@ def category_detail(request, id):
 
 
 
+  
 #------------------------------------------------------------------------------
 @login_required()
 def manufacturer(request):
@@ -234,5 +239,7 @@ def component_req_detail(request, id):
 
 
 
+  
+  
 
 # End
