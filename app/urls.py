@@ -29,6 +29,11 @@ urlpatterns = [
     path('manufacture_req', views.manufacture_req, name='manufacture_req'),
     path('manufacture_req_detail/<int:id>/',views.manufacture_req_detail,name='manufacture_req_detail'),
 
+    # Outside Manufacture Request
+    path('outside_manufacture_req', views.outside_manufacture_req, name='outside_manufacture_req'),
+    path('outside_manufacture_req_detail/<int:id>/',views.outside_manufacture_req_detail,name='outside_manufacture_req_detail'),
+
+
     # Repair request
     path('repair_req', views.repair_req, name='repair_req'),
     path('repair_req_detail/<int:id>/',views.repair_req_detail,name='repair_req_detail'),
@@ -40,5 +45,5 @@ urlpatterns = [
 
     # Other
     path('profile', views.profile, name='profile'),
-    path('search',views.search,name='search'), 
+    path('search',views.search,name='search'),
     ]

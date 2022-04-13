@@ -312,6 +312,48 @@ class Manufacture_request(models.Model):
 
 
 
+
+
+
+#------------------------------------------------------------------------------
+class Outside_Manufacture_request(models.Model):
+    Mold = models.ForeignKey(Mold ,on_delete=models.CASCADE, verbose_name = "قالب")
+    Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
+    Manufacturer = models.CharField(max_length=50, null=True, blank=True, verbose_name = "سازنده")
+    Progress_bar = models.IntegerField(default='1', null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(100)], verbose_name = "درصد پیشرفت" )
+    Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر آخرین وضعیت ساخت")
+    Description=models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات")
+    StartTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ درخواست")
+    #CheckTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ بررسی")
+    #SendTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ ارسال")
+    #TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
+    #EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
+    DeliveryTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تحویل")
+    CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
+    Status=models.CharField(max_length=20,choices=CHOICES, default='نامشخص', verbose_name = "وضعیت")
+
+
+    def __str__(self):
+      return str(self.Mold)
+
+    def get_absolute_url(self):
+        return reverse('app:outside_manufacture_req_detail',args=[self.id])
+
+    class Meta:
+        verbose_name = "قالب های دردست ساخت برون سازمان"
+        verbose_name_plural = "قالب های دردست ساخت برون سازمان"
+
+
+
+
+
+
+
+
+
+
+
+
 #------------------------------------------------------------------------------
 class Component_request(models.Model):
     Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")

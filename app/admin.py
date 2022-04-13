@@ -1,7 +1,7 @@
 from django.contrib import admin
 from . import models
 from django.contrib.admin.models import LogEntry
-from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage, Repair_operation, OperationImage, Manufacture_request, Component_request, ComponentImage
+from .models import Profile, Mold, Manufacturer, Product, Category, Mold_type, Piece_id, MoldImage, Repair_request, RepairImage, Repair_operation, OperationImage, Manufacture_request, Component_request, ComponentImage, Outside_Manufacture_request
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from mptt.admin import MPTTModelAdmin, TreeRelatedFieldListFilter, DraggableMPTTAdmin
@@ -62,6 +62,8 @@ class ManufacturerAdmin(ImportExportModelAdmin):
     search_fields = ['Name', 'short_description']
 
 admin.site.register(models.Manufacturer, ManufacturerAdmin)
+
+
 
 
 
@@ -141,6 +143,16 @@ class Manufacture_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
     list_display = ('Mold','Status')
 
 admin.site.register(models.Manufacture_request, Manufacture_requestAdmin)
+
+
+
+
+
+#------------------------------------------------------------------------------
+class Outside_Manufacture_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
+    list_display = ('Mold','Status')
+
+admin.site.register(models.Outside_Manufacture_request, Outside_Manufacture_requestAdmin)
 
 
 
