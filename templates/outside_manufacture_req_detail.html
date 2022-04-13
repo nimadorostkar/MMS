@@ -1,0 +1,147 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+{% load jalali_tags %}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-lavender">
+      <div class="card-header">
+        <h2 class="card-title" dir="rtl" align="center"> درخواست ساخت؛ <a href="{{ manufacture_request.Mold.get_absolute_url }}">{{ manufacture_request.Mold }}</a> </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="row" align="right" dir="rtl">
+
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter text-center" id="">
+            <thead class="text-primary">
+              <tr class="bold">
+                <th>
+                  درخواست کننده
+                </th>
+                <th>
+                   تاریخ درخواست
+                </th>
+                <th>
+                  تاریخ بررسی
+                </th>
+                <th>
+                  تاریخ ارسال
+                </th>
+                <th>
+                   تاریخ تست
+                </th>
+                <th>
+                   تاریخ اتمام
+                </th>
+                <th>
+                    تاریخ تحویل
+                </th>
+                <th>
+                  وضعیت
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {{ manufacture_request.Applicant }} </td>
+                <td> {{ manufacture_request.StartTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ manufacture_request.CheckTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ manufacture_request.SendTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ manufacture_request.TestTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ manufacture_request.EndTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ manufacture_request.DeliveryTime|to_jalali:'%Y/%m/%d'}} </td>
+                <td> {{ manufacture_request.Status }} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-header"> <h4> توضیحات </h4> </div>
+        <p class="category"> {{ manufacture_request.Description|linebreaks }} </p>
+        <br>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12" align="left">
+      <div class="card-body">
+        <h4> درصد پیشرفت </h4>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ manufacture_request.Progress_bar }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ manufacture_request.Progress_bar }}%">
+            {{ manufacture_request.Progress_bar }}%
+          </div>
+        </div>
+        <br>
+      </div>
+  </div>
+
+  <div class="col-md-12" align="right">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4> تصویر آخرین وضعیت ساخت </h4>
+      </div>
+      <div class="card-body">
+        <div align="center">
+            <img src="{{ manufacture_request.Image.url }}" style="width:400px">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+
+
+
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+
+{% endblock javascripts %}

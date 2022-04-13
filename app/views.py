@@ -190,11 +190,11 @@ def manufacture_req_detail(request, id):
 #------------------------------------------------------------------------------
 @login_required()
 def outside_manufacture_req(request):
-    reject_req = models.Manufacture_request.objects.filter(Status='رد شده').count()
-    total_req = models.Manufacture_request.objects.all().count()
-    done_req = models.Manufacture_request.objects.filter(Status='به اتمام رسیده').count()
-    manufacture_requests = models.Manufacture_request.objects.all().order_by("-StartTime")
-    return render(request, 'manufacture_req.html', {'manufacture_requests': manufacture_requests,
+    reject_req = models.Outside_Manufacture_request.objects.filter(Status='رد شده').count()
+    total_req = models.Outside_Manufacture_request.objects.all().count()
+    done_req = models.Outside_Manufacture_request.objects.filter(Status='به اتمام رسیده').count()
+    manufacture_requests = models.Outside_Manufacture_request.objects.all().order_by("-StartTime")
+    return render(request, 'outside_manufacture_req.html', {'manufacture_requests': manufacture_requests,
     'reject_req':reject_req,
     'total_req':total_req,
     'done_req':done_req
@@ -203,9 +203,9 @@ def outside_manufacture_req(request):
 
 @login_required()
 def outside_manufacture_req_detail(request, id):
-    outside_manufacture_request = get_object_or_404(models.Manufacture_request, id=id)
+    manufacture_request = get_object_or_404(models.Outside_Manufacture_request, id=id)
     context = {'manufacture_request':manufacture_request}
-    return render(request, 'manufacture_req_detail.html', context)
+    return render(request, 'outside_manufacture_req_detail.html', context)
 
 
 

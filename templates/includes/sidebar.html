@@ -29,6 +29,13 @@
             </a>
           </li>
 
+          <li class="{% if 'app:outside_manufacture_req' in segment %} active {% endif %}">
+            <a href="{% url 'app:outside_manufacture_req' %}">
+              <i class="tim-icons icon-notes"></i>
+              <p> قالب های دردست ساخت برون سازمان </p>
+            </a>
+          </li>
+
           <li class="{% if 'app:repair_req' in segment %} active {% endif %}">
             <a href="{% url 'app:repair_req' %}">
               <i class="tim-icons icon-settings"></i>

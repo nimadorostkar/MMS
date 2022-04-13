@@ -324,11 +324,9 @@ class Outside_Manufacture_request(models.Model):
     Image = models.ImageField(upload_to='media', default='media/Default.png', null=True, blank=True, verbose_name = "تصویر آخرین وضعیت ساخت")
     Description=models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات")
     StartTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ درخواست")
-    #CheckTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ بررسی")
-    #SendTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ ارسال")
-    #TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
-    #EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
+    ContractTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ قرارداد")
     DeliveryTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تحویل")
+    ApproveTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تایید")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES, default='نامشخص', verbose_name = "وضعیت")
 
