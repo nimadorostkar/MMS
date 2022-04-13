@@ -218,6 +218,9 @@ class Repair_request(models.Model):
     TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
     EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
     DeliveryTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تحویل")
+    Management_approval = models.BooleanField(default=False, verbose_name = "تایید مدیریت")
+    Molding_office_approval = models.BooleanField(default=False, verbose_name = "تایید دفتر قالبسازی")
+    QC_approval = models.BooleanField(default=False, verbose_name = "تایید مدیریت کیفیت و تولید")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'), ('جدید','جدید'))
     Status=models.CharField(max_length=20,choices=CHOICES, default='جدید', verbose_name = "وضعیت")
 
@@ -295,6 +298,9 @@ class Manufacture_request(models.Model):
     TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
     EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
     DeliveryTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تحویل")
+    Management_approval = models.BooleanField(default=False, verbose_name = "تایید مدیریت")
+    Molding_office_approval = models.BooleanField(default=False, verbose_name = "تایید دفتر قالبسازی")
+    QC_approval = models.BooleanField(default=False, verbose_name = "تایید مدیریت کیفیت و تولید")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES, default='نامشخص', verbose_name = "وضعیت")
 
@@ -327,6 +333,9 @@ class Outside_Manufacture_request(models.Model):
     ContractTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ قرارداد")
     DeliveryTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تحویل")
     ApproveTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تایید")
+    Management_approval = models.BooleanField(default=False, verbose_name = "تایید مدیریت")
+    Molding_office_approval = models.BooleanField(default=False, verbose_name = "تایید دفتر قالبسازی")
+    QC_approval = models.BooleanField(default=False, verbose_name = "تایید مدیریت کیفیت و تولید")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES, default='نامشخص', verbose_name = "وضعیت")
 
