@@ -78,6 +78,35 @@
 
 
 
+<div class="row" dir="rtl" align="right">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header">
+          <h4 class="card-title" style="color:#8d39e4ad;"> تأییدیه </h4>
+        </div>
+        <div class="card-body">
+
+          <div class="row">
+              <div class="col-md-4">
+                <h4> تایید مدیریت  {% if manufacture_request.Management_approval %} <span style='font-size:30px;color:green;'>&#10004;</span>  {% else %} <span style='font-size:30px;color:red;'>&#10008;</span> {% endif %} </h4>
+              </div>
+              <div class="col-md-4">
+                <h4> تایید دفتر قالبسازی  {% if manufacture_request.Molding_office_approval %} <span style='font-size:30px;color:green;'>&#10004;</span>  {% else %} <span style='font-size:30px;color:red;'>&#10008;</span> {% endif %} </h4>
+              </div>
+              <div class="col-md-4">
+                <h4> تایید مدیریت کیفیت و تولید  {% if manufacture_request.QC_approval %} <span style='font-size:30px;color:green;'>&#10004;</span>  {% else %} <span style='font-size:30px;color:red;'>&#10008;</span> {% endif %} </h4>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
 <div class="row">
   <div class="col-md-12" align="left">
       <div class="card-body">

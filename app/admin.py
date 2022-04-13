@@ -127,8 +127,8 @@ class RepairImageInline(admin.TabularInline):
 
 class Repair_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
     list_display = ('Mold','Applicant', 'Status', 'Management_approval', 'Molding_office_approval', 'QC_approval')
-    list_filter = ("Mold", "Applicant")
-    search_fields = ['Mold', 'Applicant']
+    list_filter = ("Mold", "Applicant", 'Management_approval', 'Molding_office_approval', 'QC_approval')
+    search_fields = ['Mold__Name', 'Applicant']
     raw_id_fields = ('Mold',)
     inlines = [ RepairImageInline, ]
 
@@ -141,6 +141,9 @@ admin.site.register(models.Repair_request, Repair_requestAdmin)
 #------------------------------------------------------------------------------
 class Manufacture_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
     list_display = ('Mold','Status', 'Management_approval', 'Molding_office_approval', 'QC_approval')
+    list_filter = ("Mold", "Applicant", 'Management_approval', 'Molding_office_approval', 'QC_approval')
+    search_fields = ['Mold__Name', 'Applicant']
+    raw_id_fields = ('Mold',)
 
 admin.site.register(models.Manufacture_request, Manufacture_requestAdmin)
 
@@ -151,6 +154,9 @@ admin.site.register(models.Manufacture_request, Manufacture_requestAdmin)
 #------------------------------------------------------------------------------
 class Outside_Manufacture_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
     list_display = ('Mold','Status', 'Management_approval', 'Molding_office_approval', 'QC_approval')
+    list_filter = ("Mold", "Applicant", 'Management_approval', 'Molding_office_approval', 'QC_approval')
+    search_fields = ['Mold__Name', 'Applicant']
+    raw_id_fields = ('Mold',)
 
 admin.site.register(models.Outside_Manufacture_request, Outside_Manufacture_requestAdmin)
 
