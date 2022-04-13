@@ -177,7 +177,7 @@ class Mold(models.Model):
     File = models.FileField(default='media/Default.png', null=True, blank=True, verbose_name ="فایل")
     Address = models.CharField(max_length=500, null=True, blank=True, verbose_name = "آدرس")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات")
-    #Produced = models.IntegerField(default='0', null=True, blank=True, verbose_name = "تعداد تولید شده تا کنون")
+    Produced = models.IntegerField(default='0', null=True, blank=True, verbose_name = "تعداد تولید شده تا کنون")
 
 
     def __str__(self):
@@ -215,6 +215,7 @@ class Repair_request(models.Model):
     SendTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ ارسال")
     TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
     EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
+    DeliveryTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تحویل")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES, default='نامشخص', verbose_name = "وضعیت")
 
@@ -245,7 +246,6 @@ class RepairImage(models.Model):
 #------------------------------------------------------------------------------
 class Repair_operation(models.Model):
     Request = models.ForeignKey(Repair_request ,on_delete=models.CASCADE, verbose_name = "برای درخواست")
-    #CHOICES = ( ('اول','اول'), ('دوم','دوم'), ('سوم','سوم'), ('چهارم','چهارم'), ('پنجم','پنجم'), ('ششم','ششم'), ('هفتم','هفتم'), ('هشتم','هشتم'), ('نهم','نهم'), ('دهم','دهم') )
     CHOICES = ( ('اول','اول'), ('دوم','دوم'), ('سوم','سوم'), ('چهارم','چهارم'), ('پنجم','پنجم'), ('ششم','ششم'), ('هفتم','هفتم'), ('هشتم','هشتم'), ('نهم','نهم'), ('دهم','دهم'), ('یازده','یازده'), ('دوازده','دوازده'), ('سیزده','سیزده'), ('چهارده','چهارده'), ('پانزده','پانزده'), ('شانزده','شانزده'), ('هفده','هفده'), ('هجده','هجده'), ('نوزده','نوزده'), ('بیست','بیست') )
     Step=models.CharField(max_length=20,choices=CHOICES, verbose_name = "گام")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات عملیات تعمیر")
@@ -292,6 +292,7 @@ class Manufacture_request(models.Model):
     SendTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ ارسال")
     TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
     EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
+    DeliveryTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تحویل")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES, default='نامشخص', verbose_name = "وضعیت")
 
@@ -318,6 +319,7 @@ class Component_request(models.Model):
     SendTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ ارسال")
     TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
     EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
+    DeliveryTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تحویل")
     Progress_bar = models.IntegerField(default='1', null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(100)], verbose_name = "درصد پیشرفت" )
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
     Status=models.CharField(max_length=20,choices=CHOICES, default='نامشخص', verbose_name = "وضعیت")

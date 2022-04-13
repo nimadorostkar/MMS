@@ -89,7 +89,8 @@ def mold(request):
 def mold_detail(request, id):
     mold = get_object_or_404(models.Mold, id=id)
     mold_img = models.MoldImage.objects.all()
-    context = {'mold':mold, 'mold_img':mold_img}
+    rep_req = models.Repair_request.objects.filter(Mold=mold)
+    context = {'mold':mold, 'mold_img':mold_img, 'rep_req':rep_req}
     return render(request, 'mold_detail.html', context)
 
 

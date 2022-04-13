@@ -76,6 +76,7 @@
               <th> فایل </th>
               <th> دسته بندی </th>
               <th> محصولات مرتبط   </th>
+              <th> تعداد تولید شده تا کنون </th>
             </tr>
           </thead>
           <tbody>
@@ -87,6 +88,7 @@
               <td>  <a href="{{ mold.Address.url }}" download> دانلود </a> </td>
               <td> {{ mold.Category }} </td>
               <td> {% for Related_product in mold.Related_product.all %}{{ Related_product }}<br>{% endfor %} </td>
+              <td> {{ mold.Produced }} </td>
             </tr>
           </tbody>
         </table>
@@ -128,8 +130,35 @@
     </div>
   </div>
 
-</div>
 
+
+
+
+
+
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title" style="color:#8d39e4ad;"> تعمیرات و اصلاحیات مربوط یه این قالب </h4>
+      </div>
+      <div class="card-body">
+        {% for Req in rep_req %}
+          <a href="{{ Req.get_absolute_url }}">  <h6> تعمیرات و اصلاحیات {{ Req }}  </h6>  </a>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+</div>
 
 
 

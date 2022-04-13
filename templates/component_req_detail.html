@@ -52,6 +52,9 @@
                    تاریخ اتمام
                 </th>
                 <th>
+                    تاریخ تحویل
+                </th>
+                <th>
                   وضعیت
                 </th>
               </tr>
@@ -64,6 +67,7 @@
                 <td> {{ component_request.SendTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ component_request.TestTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ component_request.EndTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ component_request.DeliveryTime|to_jalali:'%Y/%m/%d'}} </td>
                 <td> {{ component_request.Status }} </td>
               </tr>
             </tbody>

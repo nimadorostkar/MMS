@@ -50,6 +50,9 @@
                    تاریخ اتمام
                 </th>
                 <th>
+                    تاریخ تحویل
+                </th>
+                <th>
                   وضعیت
                 </th>
               </tr>
@@ -62,6 +65,7 @@
                 <td> {{ manufacture_request.SendTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ manufacture_request.TestTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ manufacture_request.EndTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ manufacture_request.DeliveryTime|to_jalali:'%Y/%m/%d'}} </td>
                 <td> {{ manufacture_request.Status }} </td>
               </tr>
             </tbody>

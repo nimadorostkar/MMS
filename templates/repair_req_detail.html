@@ -48,6 +48,9 @@
                    تاریخ اتمام
                 </th>
                 <th>
+                    تاریخ تحویل
+                </th>
+                <th>
                   وضعیت
                 </th>
               </tr>
@@ -60,6 +63,7 @@
                 <td> {{ repair_request.SendTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ repair_request.TestTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ repair_request.EndTime|to_jalali:'%Y/%m/%d'}} </td>
+                <td> {{ repair_request.DeliveryTime|to_jalali:'%Y/%m/%d'}} </td>
                 <td> {{ repair_request.Status }} </td>
               </tr>
             </tbody>
