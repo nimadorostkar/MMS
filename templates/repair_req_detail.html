@@ -72,6 +72,12 @@
         <div class="card-header"> <h4> توضیحات مشکل وارد شده </h4> </div>
         <p class="category"> {{ repair_request.Description|linebreaks }} </p>
         <br>
+        <div class="card-header"> <h4>  راه حل اراعه شده </h4> </div>
+        <p class="category"> {{ repair_request.Solution|linebreaks }} </p>
+        <br>
+        <div class="card-header"> <h4> اقدامات انجام شده </h4> </div>
+        <p class="category"> {{ repair_request.Actions|linebreaks }} </p>
+        <br>
       </div>
     </div>
   </div>

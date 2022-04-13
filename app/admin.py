@@ -124,7 +124,7 @@ class RepairImageInline(admin.TabularInline):
     extra = 1
 
 class Repair_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
-    list_display = ('Mold','Applicant')
+    list_display = ('Mold','Applicant', 'Status')
     list_filter = ("Mold", "Applicant")
     search_fields = ['Mold', 'Applicant']
     raw_id_fields = ('Mold',)
@@ -138,7 +138,7 @@ admin.site.register(models.Repair_request, Repair_requestAdmin)
 
 #------------------------------------------------------------------------------
 class Manufacture_requestAdmin(ModelAdminJalaliMixin,ImportExportModelAdmin):
-    list_display = ('Mold','Status') 
+    list_display = ('Mold','Status')
 
 admin.site.register(models.Manufacture_request, Manufacture_requestAdmin)
 

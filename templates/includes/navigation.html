@@ -34,6 +34,22 @@
               </li>
 
 
+
+              <li class="dropdown nav-item">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                  <sup style="color:purple;"> {{ notif }} </sup> <i class="tim-icons icon-settings"></i>
+                  <b class="caret d-none d-lg-block d-xl-block"></b>
+                  <p class="d-lg-none"> تعمیرات جدید </p>
+                </a>
+                <ul class="dropdown-menu dropdown-navbar">
+                  <h6 align="center" style="color:purple"> تعمیرات و اصلاحیات جدید </h6>
+                  {% for Req in repair_req_notif %}
+                   <li class="nav-link"><a href="{{ Req.get_absolute_url }}" class="nav-item dropdown-item"> {{ Req }} </a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+
+
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">

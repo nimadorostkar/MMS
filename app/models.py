@@ -210,14 +210,16 @@ class Repair_request(models.Model):
     Mold = models.ForeignKey(Mold ,on_delete=models.CASCADE, verbose_name = "قالب")
     Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات مشکل وارد شده")
+    Solution = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "راه حل")
+    Actions = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "اقدامات انجام شده")
     StartTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ درخواست")
     CheckTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ بررسی")
     SendTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ ارسال")
     TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
     EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
     DeliveryTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تحویل")
-    CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
-    Status=models.CharField(max_length=20,choices=CHOICES, default='نامشخص', verbose_name = "وضعیت")
+    CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'), ('جدید','جدید'))
+    Status=models.CharField(max_length=20,choices=CHOICES, default='جدید', verbose_name = "وضعیت")
 
     def __str__(self):
       return str(self.Mold)
