@@ -43,6 +43,9 @@
                   تاریخ بررسی
                 </th>
                 <th>
+                  تاریخ ارسال
+                </th>
+                <th>
                    تاریخ تست
                 </th>
                 <th>
@@ -58,7 +61,8 @@
                 <td> {{ component_request.Applicant }} </td>
                 <td> {{ component_request.StartTime|to_jalali:'%Y/%m/%d'  }} </td>
                 <td> {{ component_request.CheckTime|to_jalali:'%Y/%m/%d' }} </td>
-                <td> {{ repair_request.TestTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ component_request.SendTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ component_request.TestTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ component_request.EndTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ component_request.Status }} </td>
               </tr>

@@ -177,6 +177,7 @@ class Mold(models.Model):
     File = models.FileField(default='media/Default.png', null=True, blank=True, verbose_name ="فایل")
     Address = models.CharField(max_length=500, null=True, blank=True, verbose_name = "آدرس")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات")
+    #Produced = models.IntegerField(default='0', null=True, blank=True, verbose_name = "تعداد تولید شده تا کنون")
 
 
     def __str__(self):
@@ -186,8 +187,8 @@ class Mold(models.Model):
         return reverse('app:mold_detail',args=[self.id])
 
     class Meta:
-        verbose_name = "قالب"
-        verbose_name_plural = "قالب ها"
+        verbose_name = "شناسنامه قالب"
+        verbose_name_plural = "شناسنامه قالب ها"
 
 #https://stackoverflow.com/questions/537593/multiple-images-per-model
 class MoldImage(models.Model):
@@ -211,6 +212,7 @@ class Repair_request(models.Model):
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات مشکل وارد شده")
     StartTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ درخواست")
     CheckTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ بررسی")
+    SendTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ ارسال")
     TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
     EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
@@ -223,8 +225,8 @@ class Repair_request(models.Model):
         return reverse('app:repair_req_detail',args=[self.id])
 
     class Meta:
-        verbose_name = "درخواست تعمیر"
-        verbose_name_plural = "درخواست تعمیرات"
+        verbose_name = "تعمیرات | اصلاحیات قالب"
+        verbose_name_plural = "تعمیرات | اصلاحیات قالب"
 
 
 class RepairImage(models.Model):
@@ -243,7 +245,8 @@ class RepairImage(models.Model):
 #------------------------------------------------------------------------------
 class Repair_operation(models.Model):
     Request = models.ForeignKey(Repair_request ,on_delete=models.CASCADE, verbose_name = "برای درخواست")
-    CHOICES = ( ('اول','اول'), ('دوم','دوم'), ('سوم','سوم'), ('چهارم','چهارم'), ('پنجم','پنجم'), ('ششم','ششم'), ('هفتم','هفتم'), ('هشتم','هشتم'), ('نهم','نهم'), ('دهم','دهم') )
+    #CHOICES = ( ('اول','اول'), ('دوم','دوم'), ('سوم','سوم'), ('چهارم','چهارم'), ('پنجم','پنجم'), ('ششم','ششم'), ('هفتم','هفتم'), ('هشتم','هشتم'), ('نهم','نهم'), ('دهم','دهم') )
+    CHOICES = ( ('اول','اول'), ('دوم','دوم'), ('سوم','سوم'), ('چهارم','چهارم'), ('پنجم','پنجم'), ('ششم','ششم'), ('هفتم','هفتم'), ('هشتم','هشتم'), ('نهم','نهم'), ('دهم','دهم'), ('یازده','یازده'), ('دوازده','دوازده'), ('سیزده','سیزده'), ('چهارده','چهارده'), ('پانزده','پانزده'), ('شانزده','شانزده'), ('هفده','هفده'), ('هجده','هجده'), ('نوزده','نوزده'), ('بیست','بیست') )
     Step=models.CharField(max_length=20,choices=CHOICES, verbose_name = "گام")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات عملیات تعمیر")
 
@@ -286,6 +289,7 @@ class Manufacture_request(models.Model):
     Description=models.TextField(max_length=1000, null=True, blank=True, verbose_name = "توضیحات")
     StartTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ درخواست")
     CheckTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ بررسی")
+    SendTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ ارسال")
     TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
     EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
     CHOICES = (('به اتمام رسیده','به اتمام رسیده'), ('نامشخص','نامشخص'), ('رد شده','رد شده'))
@@ -299,8 +303,8 @@ class Manufacture_request(models.Model):
         return reverse('app:manufacture_req_detail',args=[self.id])
 
     class Meta:
-        verbose_name = "درخواست ساخت قاب"
-        verbose_name_plural = "درخواست های ساخت قالب"
+        verbose_name = "قالب های دردست ساخت درون سازمان"
+        verbose_name_plural = "قالب های دردست ساخت درون سازمان"
 
 
 
@@ -311,6 +315,7 @@ class Component_request(models.Model):
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "شرح درخواست")
     StartTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ درخواست")
     CheckTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ بررسی")
+    SendTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ ارسال")
     TestTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ تست")
     EndTime = models.DateField(null=True, blank=True, verbose_name = "تاریخ اتمام")
     Progress_bar = models.IntegerField(default='1', null=True, blank=True,validators=[MinValueValidator(1),MaxValueValidator(100)], verbose_name = "درصد پیشرفت" )
@@ -330,8 +335,8 @@ class Component_request(models.Model):
 
 
     class Meta:
-        verbose_name = "درخواست ساخت"
-        verbose_name_plural = "درخواست های ساخت"
+        verbose_name = "تأمین قطعات"
+        verbose_name_plural = "تأمین قطعات"
 
 class ComponentImage(models.Model):
     property = models.ForeignKey(Component_request, on_delete=models.CASCADE, related_name='images')

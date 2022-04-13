@@ -41,6 +41,9 @@
                   تاریخ بررسی
                 </th>
                 <th>
+                  تاریخ ارسال
+                </th>
+                <th>
                    تاریخ تست
                 </th>
                 <th>
@@ -56,7 +59,8 @@
                 <td> {{ manufacture_request.Applicant }} </td>
                 <td> {{ manufacture_request.StartTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ manufacture_request.CheckTime|to_jalali:'%Y/%m/%d' }} </td>
-                <td> {{ repair_request.TestTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ manufacture_request.SendTime|to_jalali:'%Y/%m/%d' }} </td>
+                <td> {{ manufacture_request.TestTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ manufacture_request.EndTime|to_jalali:'%Y/%m/%d' }} </td>
                 <td> {{ manufacture_request.Status }} </td>
               </tr>
