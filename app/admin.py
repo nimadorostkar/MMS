@@ -14,15 +14,12 @@ admin.site.site_title= "Tavankar"
 admin.site.register(LogEntry)
 
 
-
 #------------------------------------------------------------------------------
 class ProfileAdmin(ImportExportModelAdmin):
     list_display = ('user_name','phone','address')
     search_fields = ['user_name', 'phone', 'address']
 
 admin.site.register(models.Profile, ProfileAdmin)
-
-
 
 
 
@@ -37,11 +34,7 @@ class MoldAdmin(ImportExportModelAdmin):
     search_fields = ['Name', 'Code']
     raw_id_fields = ('Category', 'Type', 'Piece_id', 'Manufacturer')
     inlines = [ MoldImageInline, ]
-
 admin.site.register(models.Mold, MoldAdmin)
-
-
-
 
 
 
