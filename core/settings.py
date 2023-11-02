@@ -4,9 +4,6 @@ from unipath import Path
 import dj_database_url
 
 
-
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = Path(__file__).parent
@@ -44,7 +41,6 @@ INSTALLED_APPS = [
 
 
 
-
 # -------------------------- General Settings ----------------------------------
 
 WSGI_APPLICATION = 'core.wsgi.application'
@@ -79,11 +75,6 @@ MIDDLEWARE = [
 
 
 
-
-
-
-
-
 # default settings
 JALALI_DATE_DEFAULTS = {
    'Strftime': {
@@ -112,9 +103,6 @@ JALALI_DATE_DEFAULTS = {
 
 
 
-
-
-
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")  # ROOT dir for templates
 TEMPLATES = [
     {
@@ -135,7 +123,6 @@ TEMPLATES = [
 
 
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -146,7 +133,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 
 # Password validation
@@ -166,7 +152,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 
 
@@ -210,8 +195,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -227,8 +210,6 @@ USE_TZ = True
 
 
 
-
-
 # SRC: https://devcenter.heroku.com/articles/django-assets
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Static files (CSS, JavaScript, Images)
@@ -241,11 +222,3 @@ MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
 MEDIA_URL='/media/'
 
 
-
-
-
-
-
-
-
-# End settings
