@@ -9,8 +9,6 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
-
-#------------------------------------------------------------------------------
 class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE,unique=True,related_name='profile',verbose_name = "کاربر")
   phone = models.CharField(max_length=50,null=True, blank=True,verbose_name = " شماره تماس  ")
@@ -304,8 +302,6 @@ class Manufacture_request(models.Model):
 
 
 
-
-#------------------------------------------------------------------------------
 class Component_request(models.Model):
     Applicant = models.CharField(max_length=50, null=True, blank=True, verbose_name = "درخواست کننده")
     Description = models.TextField(max_length=1000, null=True, blank=True, verbose_name = "شرح درخواست")
@@ -345,9 +341,3 @@ class ComponentImage(models.Model):
 
 
 
-
-
-
-
-
-#-------------------------------------------------------- by Nima Dorostkar ---
